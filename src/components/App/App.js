@@ -6,10 +6,9 @@ import Dashboard from '../Dashboard/Dashboard';
 import Settings from '../Settings/Settings';
 import AddNewTask from "../AddNewTask/AddNewTask";
 
+let maxId = 100;
 const App = () => {
-  let maxId = 100;
-
-  const createTodoItem = (label, date = '', description = '', important = false, done = false) => {
+  const createTodoItem = (label, date, description = '', important = false, done = false) => {
     return {
       label,
       date,
@@ -20,16 +19,19 @@ const App = () => {
     };
   }
 
-  const [todoData, setTodoData] = useState([
-    createTodoItem('Task 1', '2023-09-05', 'This is the description for this task'),
-    createTodoItem('Task 2', '2023-10-05', 'This is the description for this task'),
-    createTodoItem('Task 3', '2023-05-09', 'This is the description for this task'),
-  ]);
-
   const [term, setTerm] = useState('');
   const [filter, setFilter] = useState('all');
   const [isVisible, setIsVisible] = useState(false);
   const [currentDate, setCurrentDate] = useState('');
+  const [sortBy, setSortBy] = useState('disabledOption');
+  const [todoData, setTodoData] = useState([
+    createTodoItem('Task 1', '2023-09-05', 'This is the description for this task'),
+    createTodoItem('Task 2', '2023-10-05', 'This is the description for this task'),
+    createTodoItem('Task 3', '2023-05-09', 'This is the description for this task'),
+    createTodoItem('Task 4', '2023-09-05', 'This is the description for this task'),
+    createTodoItem('Task 5', '2023-11-05', 'This is the description for this task'),
+    createTodoItem('Task 6', '2023-03-09', 'This is the description for this task'),
+  ]);
 
   const formatCurrentDate = () => {
     return new Date().toLocaleDateString('en-US');
@@ -40,7 +42,6 @@ const App = () => {
   }, []);
 
   const deleteItem = (id) => {
-
     setTodoData(prevTodoData => {
       const idx = prevTodoData.findIndex((item) => item.id === id);
 
@@ -55,7 +56,7 @@ const App = () => {
 
   const addItem = (label, date, description, important, done) => {
     const newItem = createTodoItem(label, date, description, important, done);
-    setTodoData(prevTodoData => [...prevTodoData, newItem]);
+    setTodoData(prevTodoData => [newItem, ...prevTodoData]);
   };
 
   const toggleProperty = (todoData, id, propName) => {
@@ -113,19 +114,24 @@ const App = () => {
     };
   };
 
-  const { theme } = React.useContext(ThemeContext);
+  const sortItems = (items) => {
+    switch (sortBy) {
+      case 'earliestFirst':
+        return [...items].sort((a, b) => new Date(a.date) - new Date(b.date));
+      case 'latestFirst':
+        return [...items].sort((a, b) => new Date(b.date) - new Date(a.date));
+      case 'orderAdded':
+        return [...items].sort((a, b) => b.id - a.id);
+      default:
+        return items;
+    }
+  };
 
+  const { theme } = React.useContext(ThemeContext);
   const toDo = todoData.filter((el) => el.done).length;
   const allToDo = todoData.length;
-  const visibleItems = filterItems(search(todoData, term), filter);
-
-  const visibleOn = () => {
-    return setIsVisible(true);
-  };
-
-  const visibleOff = () => {
-    return setIsVisible(false);
-  };
+  const visibleItems = filterItems(sortItems(search(todoData, term)), filter);
+  const todayTasks = filterItems(todoData, 'currentDay');
 
   let classNames = 'app';
   classNames += isVisible ? ' covered' : '';
@@ -133,19 +139,20 @@ const App = () => {
   return (
     <>
       <div className={classNames} style={{ backgroundColor: theme.primaryBackgroundColor, color: theme.secondaryColor }}>
-        <Menu filter={filter} onFilterChange={setFilter} />
-        <Dashboard todos={visibleItems}
+        <Menu filter={filter} onFilterChange={setFilter} setIsVisible={setIsVisible} />
+        <Dashboard
+          todos={visibleItems}
           onDeleted={deleteItem}
           onToggleImportant={onToggleImportant}
           onToggleDone={onToggleDone}
           onSearchChange={setTerm}
-          onFilterChange={setFilter}
-          // setIsVisible={visibleOn}
           setIsVisible={setIsVisible}
           currentDate={currentDate}
+          filter={filter}
+          setSortBy={setSortBy}
+          sort={sortBy}
         />
-        <Settings toDo={toDo} allToDo={allToDo} />
-
+        <Settings toDo={toDo} allToDo={allToDo} todayTasks={todayTasks} />
       </div>
 
       {isVisible && (

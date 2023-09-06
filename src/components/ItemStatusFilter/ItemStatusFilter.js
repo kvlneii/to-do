@@ -1,18 +1,10 @@
 import React from 'react';
 import './ItemStatusFilter.css';
-import { ThemeContext } from '../../theme-context'
-
+import { ThemeContext } from '../../theme-context';
+import { allStatuses } from '../../filerOptions';
 
 const ItemStatusFilter = ({ filter, onFilterChange }) => {
     const { dark } = React.useContext(ThemeContext);
-
-    const allStatuses = [
-        { name: 'all', label: 'All tasks' },
-        { name: 'important', label: 'Important tasks' },
-        { name: 'completed', label: 'Completed tasks' },
-        { name: 'uncompleted', label: 'Uncompleted tasks' },
-        { name: 'currentDay', label: 'Today\'s tasks' }
-    ];
 
     const statuses = allStatuses.map(({ name, label }) => {
         const isActive = filter === name;

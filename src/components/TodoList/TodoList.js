@@ -7,6 +7,7 @@ const TodoList = ({ todos, onDeleted,
 
     const elements = todos.map((item) => {
         const { id, ...itemProps } = item;
+        console.log(id, item.label);
 
         return (
             <li key={id} className="todo-list__item">

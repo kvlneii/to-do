@@ -12,10 +12,4 @@ const Button = ({ label, setIsVisible }) => {
     )
 }
 
-// Button.defaultProps = {
-//     setIsVisible: () => {
-//         return setIsVisible(true);
-//     }
-// };
-
 export default Button

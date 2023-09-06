@@ -1,39 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './SortTasks.css';
 import { ThemeContext } from '../../theme-context';
+import { allStatuses, allSortOptions } from '../../filerOptions';
 
-const SortTasks = ({ todos, onFilterChange }) => {
+const SortTasks = ({ todos, filter, setSortBy, sort }) => {
     const [title, setTitle] = useState('All tasks');
 
     const { theme } = React.useContext(ThemeContext);
     const task = 'task';
     const tasks = 'tasks';
 
-    const sortOptions = [
-        { name: 'all', label: 'Sort by' },
-        { name: 'important', label: 'Important tasks' },
-        { name: 'completed', label: 'Completed tasks' },
-        { name: 'uncompleted', label: 'Uncompleted tasks' },
-        { name: 'currentDay', label: 'Today\'s tasks' }
-    ];
+    useEffect(() => {
+        const selectedStatus = allStatuses.find(status => status.name === filter);
+        if (selectedStatus) {
+            setTitle(selectedStatus.label);
+        }
+    }, [filter]);
 
     const handleSortChange = (event) => {
         const selectedSortOption = event.target.value;
-        if (selectedSortOption === 'all') {
-            setTitle('All tasks');
-        } else {
-            const selectedLabel = sortOptions.find(option => option.name === selectedSortOption).label;
-            setTitle(selectedLabel);
-        }
-        onFilterChange(selectedSortOption);
+        setSortBy(selectedSortOption);
     };
 
-    const options = sortOptions.map(({ name, label }) => {
+    const options = allSortOptions.map(({ name, label }) => {
         return (
-            <option
-                value={name}
-                key={name}
-            >
+            <option value={name} key={name} >
                 {label}
             </option>
         );
@@ -47,7 +38,9 @@ const SortTasks = ({ todos, onFilterChange }) => {
             <select
                 className="sort-tasks__options"
                 style={{ backgroundColor: theme.secondaryBackgroundColor, color: theme.secondaryColor }}
-                onChange={handleSortChange}>
+                onChange={handleSortChange}
+                value={sort}>
+                <option value="disabledOption" disabled hidden>Sorted by</option>
                 {options}
             </select>
         </div>

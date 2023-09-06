@@ -22,4 +22,11 @@
     font-size: 100%;
     font-weight: inherit;
     line-height: inherit;
+    border: solid 2.5px transparent;
+    outline: none;
+}
+
+.sort-tasks__options:focus,
+.sort-tasks__options:active {
+    border-color: #5b21b6 !important;
 }

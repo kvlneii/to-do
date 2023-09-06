@@ -73,7 +73,7 @@ const AddNewTask = ({ setIsVisible, onAdded }) => {
                     <span>Mark as completed</span>
                 </label>
 
-                <Button label={'Add a task'} className='section__btn' />
+                <Button label={'Add a task'} setIsVisible={() => { }} className='section__btn' />
             </form>
         </section>
     )

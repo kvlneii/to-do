@@ -4,7 +4,7 @@ import './Menu.css';
 import Button from '../Button/Button';
 import ItemStatusFilter from '../ItemStatusFilter/ItemStatusFilter';
 
-const Menu = ({ filter, onFilterChange }) => {
+const Menu = ({ filter, onFilterChange, setIsVisible }) => {
     const { theme } = React.useContext(ThemeContext);
 
     return (
@@ -12,7 +12,7 @@ const Menu = ({ filter, onFilterChange }) => {
             <div className='menu'>
                 <div className='menu__container'>
                     <h1 className='menu__container__label'>To-do list</h1>
-                    <Button label='Add new task' />
+                    <Button label='Add new task' setIsVisible={setIsVisible} />
                 </div>
                 <ItemStatusFilter filter={filter} onFilterChange={onFilterChange} className='menu__statuses-container' />
             </div>
