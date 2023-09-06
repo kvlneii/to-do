@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './Progress.css';
 import { ThemeContext } from '../../theme-context';
+import { useAppContext } from "../../AppContext";
 
-
-const Progress = ({ toDo, allToDo, todayTasks }) => {
-    const { theme } = React.useContext(ThemeContext);
+const Progress = () => {
+    const { theme } = useContext(ThemeContext);
+    const { toDo, allToDo, todayTasks } = useAppContext();
     const completionPercentage = (toDo / allToDo) * 100;
 
     const elements = todayTasks.map((item) => {

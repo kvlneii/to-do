@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { ThemeContext } from '../../theme-context';
 import './Darkmode.css';
 
 const Darkmode = () => {
-    const { theme, toggle } = React.useContext(ThemeContext);
+    const { theme, toggle } = useContext(ThemeContext);
 
     return (
         <div className='switcher'>

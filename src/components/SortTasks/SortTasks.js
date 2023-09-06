@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './SortTasks.css';
 import { ThemeContext } from '../../theme-context';
-import { allStatuses, allSortOptions } from '../../filerOptions';
+import { useAppContext } from "../../AppContext";
+import { allStatuses, allSortOptions } from '../../filterOptions';
 
-const SortTasks = ({ todos, filter, setSortBy, sort }) => {
+const SortTasks = () => {
     const [title, setTitle] = useState('All tasks');
 
-    const { theme } = React.useContext(ThemeContext);
+    const { theme } = useContext(ThemeContext);
+    const { filter, setSortBy, sortBy, visibleItems: todos } = useAppContext();
+
     const task = 'task';
     const tasks = 'tasks';
 
@@ -39,7 +42,7 @@ const SortTasks = ({ todos, filter, setSortBy, sort }) => {
                 className="sort-tasks__options"
                 style={{ backgroundColor: theme.secondaryBackgroundColor, color: theme.secondaryColor }}
                 onChange={handleSortChange}
-                value={sort}>
+                value={sortBy}>
                 <option value="disabledOption" disabled hidden>Sorted by</option>
                 {options}
             </select>
@@ -47,4 +50,4 @@ const SortTasks = ({ todos, filter, setSortBy, sort }) => {
     )
 }
 
-export default SortTasks
+export default SortTasks;

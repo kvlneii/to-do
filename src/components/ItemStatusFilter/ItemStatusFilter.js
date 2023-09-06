@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './ItemStatusFilter.css';
 import { ThemeContext } from '../../theme-context';
-import { allStatuses } from '../../filerOptions';
+import { allStatuses } from '../../filterOptions';
+import { useAppContext } from "../../AppContext";
 
-const ItemStatusFilter = ({ filter, onFilterChange }) => {
-    const { dark } = React.useContext(ThemeContext);
+const ItemStatusFilter = () => {
+    const { dark } = useContext(ThemeContext);
+    const { filter, setFilter } = useAppContext();
 
     const statuses = allStatuses.map(({ name, label }) => {
         const isActive = filter === name;
@@ -16,7 +18,7 @@ const ItemStatusFilter = ({ filter, onFilterChange }) => {
             <li
                 className={statusClassNames}
                 key={name}
-                onClick={() => onFilterChange(name)}>
+                onClick={() => setFilter(name)}>
                 {label}
             </li>
         );
@@ -29,4 +31,4 @@ const ItemStatusFilter = ({ filter, onFilterChange }) => {
     )
 }
 
-export default ItemStatusFilter
+export default ItemStatusFilter;

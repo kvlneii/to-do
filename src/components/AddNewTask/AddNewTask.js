@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import './AddNewTask.css';
 import Button from '../Button/Button';
 import { ThemeContext } from '../../theme-context';
+import { useAppContext } from "../../AppContext";
 
-const AddNewTask = ({ setIsVisible, onAdded }) => {
-    const { theme } = React.useContext(ThemeContext);
+const AddNewTask = () => {
+    const { theme } = useContext(ThemeContext);
+    const { setIsVisible, addItem } = useAppContext();
 
     const [title, setTitle] = useState("");
     const [date, setDate] = useState("");
@@ -14,7 +16,7 @@ const AddNewTask = ({ setIsVisible, onAdded }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onAdded(title, date, description, isImportant, isCompleted);
+        addItem(title, date, description, isImportant, isCompleted);
         setIsVisible(false);
     };
 

@@ -1,18 +1,19 @@
 import React from 'react';
 import TodoListItem from '../TodoListItem/TodoListItem';
+import { useAppContext } from "../../AppContext";
 import './TodoList.css';
 
-const TodoList = ({ todos, onDeleted,
-    onToggleImportant, onToggleDone }) => {
+const TodoList = () => {
+
+    const { deleteItem, onToggleImportant, onToggleDone, visibleItems: todos } = useAppContext();
 
     const elements = todos.map((item) => {
         const { id, ...itemProps } = item;
-        console.log(id, item.label);
 
         return (
             <li key={id} className="todo-list__item">
                 <TodoListItem {...itemProps}
-                    onDeleted={() => onDeleted(id)}
+                    onDeleted={() => deleteItem(id)}
                     onToggleImportant={() => onToggleImportant(id)}
                     onToggleDone={() => onToggleDone(id)}
                 />

@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Button from '../Button/Button';
 import SearchPanel from '../SearchPanel/SearchPanel';
 import { ThemeContext } from '../../theme-context';
+import { useAppContext } from "../../AppContext";
 import './Header.css';
 
-const Header = ({ onSearchChange, setIsVisible, currentDate }) => {
-    const { theme } = React.useContext(ThemeContext);
+const Header = () => {
+    const { theme } = useContext(ThemeContext);
+    const { currentDate } = useAppContext();
 
     const formatDate = () => {
         const options = { month: 'short', day: '2-digit' };
@@ -17,10 +19,10 @@ const Header = ({ onSearchChange, setIsVisible, currentDate }) => {
 
     return (
         <div className='header'>
-            <SearchPanel onSearchChange={onSearchChange} />
+            <SearchPanel />
             <p style={{ color: theme.secondaryColor }}>{formatDate()}</p>
             <div className='header__btn'>
-                <Button label='Add new task' setIsVisible={setIsVisible} />
+                <Button label='Add new task' />
             </div>
         </div>
     )

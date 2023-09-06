@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import './SearchPanel.css';
 import { ThemeContext } from '../../theme-context';
+import { useAppContext } from "../../AppContext";
 
-const SearchPanel = ({ onSearchChange }) => {
-
-    const { theme } = React.useContext(ThemeContext);
+const SearchPanel = () => {
+    const { theme } = useContext(ThemeContext);
     const [term, setTerm] = useState('');
+    const { onSearchChange } = useAppContext();
 
     const handleSearchChange = (e) => {
         const newTerm = e.target.value;

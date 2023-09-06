@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './TodoListItem.css';
 import { ThemeContext } from '../../theme-context';
 
 const TodoListItem = ({ label, date, description, done, important, onDeleted, onToggleImportant, onToggleDone }) => {
 
-    const { theme } = React.useContext(ThemeContext);
+    const { theme } = useContext(ThemeContext);
+
     let classNames = 'todo-item';
     classNames += done ? ' done' : '';
     classNames += important ? ' important' : '';
@@ -14,9 +15,15 @@ const TodoListItem = ({ label, date, description, done, important, onDeleted, on
 
     return (
         <div className='wrapper'>
-            <div className={classNames} style={{ backgroundColor: theme.secondaryBackgroundColor, color: theme.secondaryColor }}>
+            <div
+                className={classNames}
+                style={{ backgroundColor: theme.secondaryBackgroundColor, color: theme.secondaryColor }}>
                 <div className="todo-item__task">
-                    <span className='todo-item__task__label' style={{ color: theme.primaryTitle }}>{label}</span>
+                    <span
+                        className='todo-item__task__label'
+                        style={{ color: theme.primaryTitle }}>
+                        {label}
+                    </span>
                     <p className='todo-item__task__desc'>{description}</p>
                     <div className='todo-item__task__date'>
                         <span className='todo-item__task__date__icon'>
