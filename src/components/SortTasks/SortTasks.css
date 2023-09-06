@@ -1,0 +1,25 @@
+.sort-tasks {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sort-tasks__title {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 500;
+    margin: 2rem 0;
+}
+
+.sort-tasks__options {
+    border-radius: 0.5rem;
+    border-width: 2px;
+    padding: 0.75rem;
+    transition-duration: .15s;
+    border-color: transparent;
+    margin-left: auto;
+    font-family: inherit;
+    font-size: 100%;
+    font-weight: inherit;
+    line-height: inherit;
+}

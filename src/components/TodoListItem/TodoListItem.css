@@ -1,0 +1,76 @@
+.wrapper {
+    width: 100%;
+}
+
+.todo-item {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    min-height: 14rem;
+    padding: 1rem;
+    border-radius: 10px;
+    transition: box-shadow .3s;
+}
+
+.todo-item:hover {
+    box-shadow: 0 0 11px rgba(33, 33, 33, .2);
+}
+
+.todo-item__task {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+.todo-item__task__date {
+    width: 100%;
+    display: flex;
+    margin-top: auto;
+}
+
+.todo-item__task__label {
+    font-weight: 500;
+}
+
+.todo-item__change {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border-top: 2px dashed #8a9eb7;
+    padding-top: 1rem;
+    margin-top: 1.2rem;
+}
+
+.todo-item__task__date__icon {
+    width: 1.25rem;
+    display: block;
+    margin-right: 0.5rem;
+}
+
+.todo-item__change__complete {
+    background-color: #fde68a;
+    color: #95400e;
+    padding: 0.4rem 0.75rem;
+    font-weight: 500;
+    font-family: inherit;
+    font-size: 100%;
+    border-radius: 30px;
+    border: none;
+}
+
+.completed {
+    background-color: #a7f3d0;
+    color: #1f765e;
+}
+
+.icons--important {
+    margin-left: auto;
+}
+
+.icons {
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
+    padding: 0.2rem;
+}
