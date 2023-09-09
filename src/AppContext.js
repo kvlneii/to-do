@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState } from 'react';
+import PropTypes from 'prop-types';
 
 const AppContext = createContext();
 
@@ -18,7 +19,7 @@ const AppProvider = ({ children }) => {
             done,
             id: maxId++
         };
-    }
+    };
 
     const [term, setTerm] = useState('');
     const [filter, setFilter] = useState('all');
@@ -31,7 +32,7 @@ const AppProvider = ({ children }) => {
         createTodoItem('Task 3', '2023-05-09', 'This is the description for this task'),
         createTodoItem('Task 4', '2023-09-05', 'This is the description for this task'),
         createTodoItem('Task 5', '2023-11-05', 'This is the description for this task'),
-        createTodoItem('Task 6', '2023-03-09', 'This is the description for this task'),
+        createTodoItem('Task 6', '2023-03-09', 'This is the description for this task')
     ]);
 
     const formatCurrentDate = () => {
@@ -43,13 +44,10 @@ const AppProvider = ({ children }) => {
     };
 
     const deleteItem = (id) => {
-        setTodoData(prevTodoData => {
+        setTodoData((prevTodoData) => {
             const idx = prevTodoData.findIndex((item) => item.id === id);
 
-            const newData = [
-                ...prevTodoData.slice(0, idx),
-                ...prevTodoData.slice(idx + 1)
-            ];
+            const newData = [...prevTodoData.slice(0, idx), ...prevTodoData.slice(idx + 1)];
 
             return newData;
         });
@@ -57,7 +55,7 @@ const AppProvider = ({ children }) => {
 
     const addItem = (label, date, description, important, done) => {
         const newItem = createTodoItem(label, date, description, important, done);
-        setTodoData(prevTodoData => [newItem, ...prevTodoData]);
+        setTodoData((prevTodoData) => [newItem, ...prevTodoData]);
     };
 
     const toggleProperty = (todoData, id, propName) => {
@@ -66,21 +64,17 @@ const AppProvider = ({ children }) => {
         const oldItem = todoData[idx];
         const newItem = { ...oldItem, [propName]: !oldItem[propName] };
 
-        return [
-            ...todoData.slice(0, idx),
-            newItem,
-            ...todoData.slice(idx + 1)
-        ]
-    }
+        return [...todoData.slice(0, idx), newItem, ...todoData.slice(idx + 1)];
+    };
 
     const onToggleImportant = (id) => {
-        setTodoData(prevTodoData => {
+        setTodoData((prevTodoData) => {
             return toggleProperty(prevTodoData, id, 'important');
         });
     };
 
     const onToggleDone = (id) => {
-        setTodoData(prevTodoData => {
+        setTodoData((prevTodoData) => {
             return toggleProperty(prevTodoData, id, 'done');
         });
     };
@@ -89,10 +83,8 @@ const AppProvider = ({ children }) => {
         if (term.length === 0) return items;
 
         return items.filter((item) => {
-            return item.label
-                .toLowerCase()
-                .indexOf(term.toLowerCase()) > -1;
-        })
+            return item.label.toLowerCase().indexOf(term.toLowerCase()) > -1;
+        });
     };
 
     const filterItems = (items, filter) => {
@@ -112,7 +104,7 @@ const AppProvider = ({ children }) => {
                 });
             default:
                 return items;
-        };
+        }
     };
 
     const sortItems = (items) => {
@@ -161,11 +153,11 @@ const AppProvider = ({ children }) => {
         visibleItems
     };
 
-    return (
-        <AppContext.Provider value={contextValue}>
-            {children}
-        </AppContext.Provider>
-    );
+    return <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>;
+};
+
+AppProvider.propTypes = {
+    children: PropTypes.oneOfType([PropTypes.node, PropTypes.object]).isRequired
 };
 
 export { AppProvider };

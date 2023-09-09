@@ -55,7 +55,6 @@
     outline: none;
 }
 
-
 .section__form input::placeholder,
 .section__form textarea::placeholder {
     color: inherit;
@@ -78,7 +77,7 @@
     position: relative;
 }
 
-.section__mark input[type="checkbox"] {
+.section__mark input[type='checkbox'] {
     width: 15px;
     height: 15px;
     border-radius: 50%;

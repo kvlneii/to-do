@@ -6,14 +6,14 @@ import SortTasks from '../SortTasks/SortTasks';
 
 const Dashboard = () => {
     return (
-        <div className='wrapper'>
-            <div className='container'>
+        <div className="wrapper">
+            <div className="container">
                 <Header />
                 <SortTasks />
                 <TodoList />
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Dashboard
+export default Dashboard;

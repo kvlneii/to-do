@@ -1,4 +1,5 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 const themes = {
     dark: {
@@ -19,13 +20,13 @@ const themes = {
         buttonsColor: '#7c3aed',
         themeBackground: '#e2e8f0'
     }
-}
+};
 
 const initialState = {
     dark: false,
     theme: themes.light,
-    toggle: () => { }
-}
+    toggle: () => {}
+};
 
 const ThemeContext = createContext(initialState);
 
@@ -34,22 +35,24 @@ function ThemeProvider({ children }) {
 
     useEffect(() => {
         const isDark = localStorage.getItem('dark') === 'true';
-        setDark(isDark)
+        setDark(isDark);
     }, [dark]);
 
     const toggle = () => {
         const isDark = !dark;
         localStorage.setItem('dark', JSON.stringify(isDark));
-        setDark(isDark)
+        setDark(isDark);
     };
 
     const theme = dark ? themes.dark : themes.light;
 
     return (
-        <ThemeContext.Provider value={{ theme, toggle, dark }}>
-            {children}
-        </ThemeContext.Provider>
+        <ThemeContext.Provider value={{ theme, toggle, dark }}>{children}</ThemeContext.Provider>
     );
 }
 
-export { ThemeProvider, ThemeContext }
+ThemeProvider.propTypes = {
+    children: PropTypes.oneOfType([PropTypes.node, PropTypes.object]).isRequired
+};
+
+export { ThemeProvider, ThemeContext };

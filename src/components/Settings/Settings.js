@@ -8,13 +8,13 @@ const Settings = () => {
     const { theme } = useContext(ThemeContext);
 
     return (
-        <div className='wrapper' style={{ backgroundColor: theme.secondaryBackgroundColor }}>
-            <div className='container'>
+        <div className="wrapper" style={{ backgroundColor: theme.secondaryBackgroundColor }}>
+            <div className="container">
                 <Darkmode />
                 <Progress />
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Settings
+export default Settings;

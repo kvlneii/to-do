@@ -22,7 +22,7 @@
     display: block;
     margin-top: 1.7rem;
     padding-top: 1rem;
-    border-top: 2px solid rgba(51, 65, 85, .3);
+    border-top: 2px solid rgba(51, 65, 85, 0.3);
 }
 
 .progress-bar__tasks {
