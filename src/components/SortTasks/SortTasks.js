@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import './SortTasks.css';
 import { ThemeContext } from '../../theme-context';
-import { useAppContext } from "../../AppContext";
+import { useAppContext } from '../../AppContext';
 import { allStatuses, allSortOptions } from '../../filterOptions';
 
 const SortTasks = () => {
@@ -14,7 +14,7 @@ const SortTasks = () => {
     const tasks = 'tasks';
 
     useEffect(() => {
-        const selectedStatus = allStatuses.find(status => status.name === filter);
+        const selectedStatus = allStatuses.find((status) => status.name === filter);
         if (selectedStatus) {
             setTitle(selectedStatus.label);
         }
@@ -27,7 +27,7 @@ const SortTasks = () => {
 
     const options = allSortOptions.map(({ name, label }) => {
         return (
-            <option value={name} key={name} >
+            <option value={name} key={name}>
                 {label}
             </option>
         );
@@ -35,19 +35,25 @@ const SortTasks = () => {
 
     return (
         <div className="sort-tasks">
-            <h1 className='sort-tasks__title' style={{ color: theme.primaryColor }}>
+            <h1 className="sort-tasks__title" style={{ color: theme.primaryColor }}>
                 {title} ({todos.length} {todos.length === 1 ? task : tasks})
             </h1>
             <select
                 className="sort-tasks__options"
-                style={{ backgroundColor: theme.secondaryBackgroundColor, color: theme.secondaryColor }}
+                style={{
+                    backgroundColor: theme.secondaryBackgroundColor,
+                    color: theme.secondaryColor
+                }}
                 onChange={handleSortChange}
-                value={sortBy}>
-                <option value="disabledOption" disabled hidden>Sorted by</option>
+                value={sortBy}
+            >
+                <option value="disabledOption" disabled hidden>
+                    Sorted by
+                </option>
                 {options}
             </select>
         </div>
-    )
-}
+    );
+};
 
 export default SortTasks;

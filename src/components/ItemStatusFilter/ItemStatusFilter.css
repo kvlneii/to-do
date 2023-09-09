@@ -10,7 +10,10 @@
     padding: 10px 12px;
     cursor: pointer;
     display: block;
-    transition: background-color 0.3s, color 0.3s, border-right 0.1s;
+    transition:
+        background-color 0.3s,
+        color 0.3s,
+        border-right 0.1s;
 }
 
 .navigation__item--active {
@@ -20,7 +23,7 @@
 }
 
 .navigation__item--darkModeActive {
-    background-color: rgba(51, 65, 85, .2);
+    background-color: rgba(51, 65, 85, 0.2);
     color: #e2e8f0;
     border-right: 4px solid #e2e8f0;
 }

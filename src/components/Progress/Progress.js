@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import './Progress.css';
 import { ThemeContext } from '../../theme-context';
-import { useAppContext } from "../../AppContext";
+import { useAppContext } from '../../AppContext';
 
 const Progress = () => {
     const { theme } = useContext(ThemeContext);
@@ -21,23 +21,29 @@ const Progress = () => {
     });
 
     return (
-        <div className='progress-bar'>
-            <div className='progress-bar__text'>
+        <div className="progress-bar">
+            <div className="progress-bar__text">
                 <span>All tasks</span>
                 {toDo}/{allToDo}
             </div>
-            <div className='progress-bar__filler' style={{ backgroundColor: theme.themeBackground }}>
-                <div className='progress-bar__filler-color' style={{ width: `${completionPercentage}%` }}>
+            <div
+                className="progress-bar__filler"
+                style={{ backgroundColor: theme.themeBackground }}>
+                <div
+                    className="progress-bar__filler-color"
+                    style={{ width: `${completionPercentage}%` }}>
                     <div></div>
                 </div>
             </div>
-            <span className='progress-bar__tasks' style={{ color: theme.primaryColor }}>Today's tasks :</span>
+            <span className="progress-bar__tasks" style={{ color: theme.primaryColor }}>
+                Today&apos;s tasks :
+            </span>
 
             <ul className="progress-bar__list">
                 {todayTasks.length === 0 ? <li>No tasks for today!</li> : elements}
             </ul>
         </div>
-    )
-}
+    );
+};
 
-export default Progress
+export default Progress;

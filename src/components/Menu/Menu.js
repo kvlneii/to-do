@@ -8,16 +8,21 @@ const Menu = () => {
     const { theme } = useContext(ThemeContext);
 
     return (
-        <div className='wrapper' style={{ backgroundColor: theme.secondaryBackgroundColor, color: theme.secondaryColor }}>
-            <div className='menu'>
-                <div className='menu__container'>
-                    <h1 className='menu__container__label'>To-do list</h1>
-                    <Button label='Add new task' />
+        <div
+            className="wrapper"
+            style={{
+                backgroundColor: theme.secondaryBackgroundColor,
+                color: theme.secondaryColor
+            }}>
+            <div className="menu">
+                <div className="menu__container">
+                    <h1 className="menu__container__label">To-do list</h1>
+                    <Button label="Add new task" />
                 </div>
-                <ItemStatusFilter className='menu__statuses-container' />
+                <ItemStatusFilter className="menu__statuses-container" />
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Menu
+export default Menu;

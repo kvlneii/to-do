@@ -9,11 +9,11 @@
     min-height: 14rem;
     padding: 1rem;
     border-radius: 10px;
-    transition: box-shadow .3s;
+    transition: box-shadow 0.3s;
 }
 
 .todo-item:hover {
-    box-shadow: 0 0 11px rgba(33, 33, 33, .2);
+    box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
 }
 
 .todo-item__task {
