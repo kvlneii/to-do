@@ -1,19 +1,21 @@
-import React, { useContext } from 'react';
-import './ItemStatusFilter.css';
-import { ThemeContext } from '../../theme-context';
-import { allStatuses } from '../../filterOptions';
+import { useContext } from 'react';
+import { ThemeContext } from '../../ThemeContext';
 import { useAppContext } from '../../AppContext';
 
+import { allStatuses } from '../../consts';
+
+import './ItemStatusFilter.css';
+
 const ItemStatusFilter = () => {
-    const { dark } = useContext(ThemeContext);
+    const { isDark } = useContext(ThemeContext);
     const { filter, setFilter } = useAppContext();
 
     const statuses = allStatuses.map(({ name, label }) => {
         const isActive = filter === name;
         let statusClassNames = 'navigation__item';
-        statusClassNames += dark ? ' navigation__item--darkMode' : '';
+        statusClassNames += isDark ? ' navigation__item--darkMode' : '';
         statusClassNames += isActive
-            ? dark
+            ? isDark
                 ? ' navigation__item--darkModeActive'
                 : ' navigation__item--active'
             : '';

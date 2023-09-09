@@ -1,17 +1,22 @@
-import React, { useState, useEffect, useContext } from 'react';
-import './SortTasks.css';
-import { ThemeContext } from '../../theme-context';
+import { useState, useEffect, useContext, useMemo } from 'react';
+
+import { ThemeContext } from '../../ThemeContext';
 import { useAppContext } from '../../AppContext';
-import { allStatuses, allSortOptions } from '../../filterOptions';
+
+import { allStatuses, allSortOptions } from '../../consts';
+
+import './SortTasks.css';
+import { todoUtil } from '../../utils';
 
 const SortTasks = () => {
-    const [title, setTitle] = useState('All tasks');
+    const [title, setTitle] = useState();
 
     const { theme } = useContext(ThemeContext);
-    const { filter, setSortBy, sortBy, visibleItems: todos } = useAppContext();
+    const { todoData, searchedTerm, filter, sortBy, setSortBy } = useAppContext();
 
-    const task = 'task';
-    const tasks = 'tasks';
+    const todos = useMemo(() => {
+        return todoUtil.getVisibleItems(todoData, searchedTerm, sortBy, filter);
+    }, [todoData, searchedTerm, sortBy, filter]);
 
     useEffect(() => {
         const selectedStatus = allStatuses.find((status) => status.name === filter);
@@ -36,7 +41,7 @@ const SortTasks = () => {
     return (
         <div className="sort-tasks">
             <h1 className="sort-tasks__title" style={{ color: theme.primaryColor }}>
-                {title} ({todos.length} {todos.length === 1 ? task : tasks})
+                {title} ({todos.length} {todos.length === 1 ? 'task' : 'tasks'})
             </h1>
             <select
                 className="sort-tasks__options"

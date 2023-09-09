@@ -5,6 +5,10 @@
     margin-bottom: 1.5rem;
 }
 
+.switcher__text {
+    cursor: pointer;
+}
+
 .switcher__button {
     position: relative;
     display: inline-block;

@@ -10,7 +10,8 @@
     },
     "plugins": ["react"],
     "rules": {
-        "no-unused-vars": "error",
-        "react/prop-types": "warn"
+        "no-unused-vars": "warn",
+        "react/prop-types": "warn",
+        "react/react-in-jsx-scope": 0
     }
 }
