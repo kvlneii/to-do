@@ -9,7 +9,8 @@ const createTodoItem = (item, id) => {
 };
 
 const addItem = (todoData, item) => {
-    const newId = todoData?.length > 0 ? todoData[todoData.length - 1].id + 1 : 0;
+    const maxId = Math.max(...todoData.map((todo) => todo.id), -1);
+    const newId = maxId + 1;
 
     const newItem = createTodoItem(item, newId);
 

@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { ThemeContext } from '../../ThemeContext';
 
 import { Darkmode, Progress } from '../../components';
-import './Settings.css';
+import './Settings.scss';
 
 const Settings = () => {
     const { theme } = useContext(ThemeContext);

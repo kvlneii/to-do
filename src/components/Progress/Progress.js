@@ -2,8 +2,8 @@ import { useContext, useMemo } from 'react';
 import { ThemeContext } from '../../ThemeContext';
 import { useAppContext } from '../../AppContext';
 
-import './Progress.css';
 import { todoUtil } from '../../utils';
+import './Progress.scss';
 
 const Progress = () => {
     const { theme } = useContext(ThemeContext);
@@ -41,12 +41,10 @@ const Progress = () => {
             </div>
             <div
                 className="progress-bar__filler"
-                style={{ backgroundColor: theme.themeBackground }}
-            >
+                style={{ backgroundColor: theme.themeBackground }}>
                 <div
                     className="progress-bar__filler-color"
-                    style={{ width: `${completionPercentage}%` }}
-                >
+                    style={{ width: `${completionPercentage}%` }}>
                     <div></div>
                 </div>
             </div>

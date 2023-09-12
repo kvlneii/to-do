@@ -5,7 +5,7 @@ import { useAppContext } from '../../AppContext';
 
 import { modalIds } from '../../consts';
 import { Button, ItemStatusFilter } from '../../components';
-import './Menu.css';
+import './Menu.scss';
 
 const Menu = () => {
     const { theme } = useContext(ThemeContext);
@@ -26,7 +26,7 @@ const Menu = () => {
                         onClick={() => setActiveModalId(modalIds.CREATE_TASK_MODAL)}
                     />
                 </div>
-                <ItemStatusFilter className="menu__statuses-container" />
+                <ItemStatusFilter />
             </div>
         </div>
     );

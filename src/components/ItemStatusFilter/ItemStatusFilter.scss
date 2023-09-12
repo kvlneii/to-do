@@ -1,0 +1,37 @@
+.navigation {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.5rem;
+
+    &__item {
+        padding: 10px 12px;
+        cursor: pointer;
+        display: block;
+        transition:
+            background-color 0.3s,
+            color 0.3s,
+            border-right 0.1s;
+
+        &--active {
+            background-color: rgb(237, 233, 254);
+            color: #f43f5e;
+            border-right: 4px solid #f43f5e;
+        }
+
+        &--darkModeActive {
+            background-color: rgba(51, 65, 85, 0.2);
+            color: #e2e8f0;
+            border-right: 4px solid #e2e8f0;
+        }
+
+        &.navigation__item--darkMode:hover {
+            color: #e2e8f0;
+        }
+
+        &:hover {
+            color: #f43f5e;
+        }
+    }
+}

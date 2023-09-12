@@ -4,7 +4,7 @@ import { useAppContext } from '../../AppContext';
 
 import { allStatuses } from '../../consts';
 
-import './ItemStatusFilter.css';
+import './ItemStatusFilter.scss';
 
 const ItemStatusFilter = () => {
     const { isDark } = useContext(ThemeContext);

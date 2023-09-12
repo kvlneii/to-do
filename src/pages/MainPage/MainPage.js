@@ -8,16 +8,7 @@ import { todoUtil } from '../../utils';
 
 import { Modal } from '../../components';
 import { AddNewTask, Dashboard, Menu, Settings } from '../../containers';
-import './MainPage.css';
-
-const MOCK_DATA = [
-    { label: 'Task 1', date: '2023-09-05', description: 'This is the description for this task' },
-    { label: 'Task 2', date: '2023-10-05', description: 'This is the description for this task' },
-    { label: 'Task 3', date: '2023-05-09', description: 'This is the description for this task' },
-    { label: 'Task 4', date: '2023-09-05', description: 'This is the description for this task' },
-    { label: 'Task 5', date: '2023-11-05', description: 'This is the description for this task' },
-    { label: 'Task 6', date: '2023-03-09', description: 'This is the description for this task' }
-];
+import './MainPage.scss';
 
 const MainPage = () => {
     const { activeModalId, setActiveModalId, setTodoData } = useAppContext();
@@ -25,8 +16,25 @@ const MainPage = () => {
     const { theme } = useContext(ThemeContext);
 
     useEffect(() => {
-        // TODO: change mock data to data from the API
-        setTodoData(MOCK_DATA.map((data, index) => todoUtil.createTodoItem(data, index)));
+        const apiUrl = 'http://localhost:8000/tasks';
+
+        fetch(apiUrl)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then((data) => {
+                if (Array.isArray(data)) {
+                    setTodoData(data.map((task, index) => todoUtil.createTodoItem(task, index)));
+                } else {
+                    console.error('API response does not contain an array:', data);
+                }
+            })
+            .catch((error) => {
+                console.error('Error fetching data from API:', error);
+            });
     }, []);
 
     return (
@@ -36,8 +44,7 @@ const MainPage = () => {
                 style={{
                     backgroundColor: theme.primaryBackgroundColor,
                     color: theme.secondaryColor
-                }}
-            >
+                }}>
                 <Menu />
                 <Dashboard />
                 <Settings />

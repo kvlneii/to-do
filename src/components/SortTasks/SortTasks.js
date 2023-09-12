@@ -5,7 +5,7 @@ import { useAppContext } from '../../AppContext';
 
 import { allStatuses, allSortOptions } from '../../consts';
 
-import './SortTasks.css';
+import './SortTasks.scss';
 import { todoUtil } from '../../utils';
 
 const SortTasks = () => {
@@ -50,8 +50,7 @@ const SortTasks = () => {
                     color: theme.secondaryColor
                 }}
                 onChange={handleSortChange}
-                value={sortBy}
-            >
+                value={sortBy}>
                 <option value="disabledOption" disabled hidden>
                     Sorted by
                 </option>

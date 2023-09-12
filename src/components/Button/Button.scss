@@ -11,4 +11,9 @@
     font-size: 100%;
     font-weight: inherit;
     line-height: inherit;
+    transition: transform 0.2s;
+
+    &:active {
+        transform: scale(0.95);
+    }
 }

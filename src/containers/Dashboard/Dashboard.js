@@ -1,7 +1,7 @@
 import { Header, TodoList } from '../../containers';
 import { SortTasks } from '../../components';
 
-import './Dashboard.css';
+import './Dashboard.scss';
 
 const Dashboard = () => {
     return (

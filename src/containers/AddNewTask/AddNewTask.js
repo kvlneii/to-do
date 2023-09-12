@@ -4,7 +4,7 @@ import { useAppContext } from '../../AppContext';
 
 import { Button } from '../../components';
 
-import './AddNewTask.css';
+import './AddNewTask.scss';
 import { todoUtil } from '../../utils';
 
 const AddNewTask = () => {
@@ -12,7 +12,6 @@ const AddNewTask = () => {
     const { setActiveModalId, todoData, setTodoData } = useAppContext();
 
     const [title, setTitle] = useState('');
-
     const [date, setDate] = useState('');
     const [description, setDescription] = useState('');
     const [isImportant, setIsImportant] = useState(false);
@@ -21,19 +20,18 @@ const AddNewTask = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const newTodoData = todoUtil.addItem(todoData, {
-            title,
+            label: title,
             date,
             description,
-            isImportant,
-            isCompleted
+            important: isImportant,
+            done: isCompleted
         });
         setTodoData(newTodoData);
-
         setActiveModalId(null);
     };
 
     return (
-        <form className="section__form" onSubmit={handleSubmit}>
+        <form className="add-form" onSubmit={handleSubmit}>
             <label>
                 Title
                 <input
@@ -72,7 +70,7 @@ const AddNewTask = () => {
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}></textarea>
             </label>
-            <label className="section__mark">
+            <label className="add-form__mark">
                 <input
                     type="checkbox"
                     checked={isImportant}
@@ -80,7 +78,7 @@ const AddNewTask = () => {
                 />
                 <span>Mark as important</span>
             </label>
-            <label className="section__mark">
+            <label className="add-form__mark">
                 <input
                     type="checkbox"
                     checked={isCompleted}
@@ -89,7 +87,7 @@ const AddNewTask = () => {
                 <span>Mark as completed</span>
             </label>
 
-            <Button label={'Add a task'} onClick={() => {}} className="section__btn" />
+            <Button label={'Add a task'} onClick={() => {}} className="add-form__btn" />
         </form>
     );
 };

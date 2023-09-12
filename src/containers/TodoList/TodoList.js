@@ -5,7 +5,7 @@ import { propertyNames } from '../../consts';
 import { todoUtil } from '../../utils';
 
 import TodoListItem from './TodoListItem/TodoListItem';
-import './TodoList.css';
+import './TodoList.scss';
 
 const TodoList = () => {
     const { todoData, searchedTerm, filter, sortBy, setTodoData } = useAppContext();

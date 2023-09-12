@@ -6,7 +6,7 @@ import { useAppContext } from '../../AppContext';
 import { modalIds } from '../../consts';
 
 import { Button, SearchInput } from '../../components';
-import './Header.css';
+import './Header.scss';
 
 const Header = () => {
     const { theme } = useContext(ThemeContext);

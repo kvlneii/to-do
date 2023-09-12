@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { ThemeContext } from '../../../ThemeContext';
 
-import './TodoListItem.css';
+import './TodoListItem.scss';
 
 const TodoListItem = ({
     label,
@@ -17,17 +17,13 @@ const TodoListItem = ({
 }) => {
     const { theme } = useContext(ThemeContext);
 
-    let classNames = 'todo-item';
-    classNames += done ? ' done' : '';
-    classNames += important ? ' important' : '';
-
-    let btnClassNames = 'todo-item__change__complete';
-    btnClassNames += done ? ' completed' : '';
+    let btnClassNames = 'todo-item__buttons__complete';
+    btnClassNames += done ? ' todo-item__buttons__complete--done' : '';
 
     return (
         <div className="wrapper">
             <div
-                className={classNames}
+                className="todo-item"
                 style={{
                     backgroundColor: theme.secondaryBackgroundColor,
                     color: theme.secondaryColor
@@ -54,7 +50,7 @@ const TodoListItem = ({
                         <span>{date}</span>
                     </div>
                 </div>
-                <div className="todo-item__change">
+                <div className="todo-item__buttons">
                     <button className={btnClassNames} onClick={onToggleComplete}>
                         {done ? 'completed' : 'uncompleted'}
                     </button>
@@ -65,7 +61,7 @@ const TodoListItem = ({
                         viewBox="0 0 22 22"
                         strokeWidth="1.5"
                         stroke="currentColor"
-                        className="icons icons--important"
+                        className="todo-item__buttons__icons todo-item__buttons__icons--important"
                         onClick={onToggleImportant}
                         style={{
                             fill: important ? '#f43f5e' : 'none',
@@ -81,7 +77,7 @@ const TodoListItem = ({
                         xmlns="http://www.w3.org/2000/svg"
                         fill="currentColor"
                         viewBox="0 0 23 23"
-                        className="icons"
+                        className="todo-item__buttons__icons"
                         onClick={onDeleted}>
                         <path
                             fillRule="evenodd"
