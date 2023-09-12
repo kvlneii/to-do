@@ -5,7 +5,6 @@ import { ThemeContext } from '../../ThemeContext';
 
 import './Modal.scss';
 
-// TODO: update modal class names
 const Modal = ({ title, onClose, children }) => {
     const { theme } = useContext(ThemeContext);
 

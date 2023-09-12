@@ -9,7 +9,7 @@ const Settings = () => {
 
     return (
         <div className="wrapper" style={{ backgroundColor: theme.secondaryBackgroundColor }}>
-            <div className="container">
+            <div className="settings-container">
                 <Darkmode />
                 <Progress />
             </div>

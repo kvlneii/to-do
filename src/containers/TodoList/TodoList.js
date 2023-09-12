@@ -14,13 +14,13 @@ const TodoList = () => {
         return todoUtil.getVisibleItems(todoData, searchedTerm, sortBy, filter);
     }, [todoData, searchedTerm, sortBy, filter]);
 
-    const handleDelete = (id) => {
-        const newTodoData = todoUtil.deleteItem(todoData, id);
+    const handleDelete = async (id) => {
+        const newTodoData = await todoUtil.deleteItem(todoData, id);
         setTodoData(newTodoData);
     };
 
-    const handleToggleProperty = (id, propName) => {
-        const newTodoData = todoUtil.toggleProperty(todoData, id, propName);
+    const handleToggleProperty = async (id, propName) => {
+        const newTodoData = await todoUtil.toggleProperty(todoData, id, propName);
         setTodoData(newTodoData);
     };
 

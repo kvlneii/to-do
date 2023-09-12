@@ -4,11 +4,12 @@ import { useAppContext } from '../../AppContext';
 import { ThemeContext } from '../../ThemeContext';
 
 import { modalIds } from '../../consts';
-import { todoUtil } from '../../utils';
+import TasksService from '../../services/TasksService';
 
 import { Modal } from '../../components';
 import { AddNewTask, Dashboard, Menu, Settings } from '../../containers';
 import './MainPage.scss';
+import EditTask from '../../containers/EditTask/EditTask';
 
 const MainPage = () => {
     const { activeModalId, setActiveModalId, setTodoData } = useAppContext();
@@ -16,24 +17,15 @@ const MainPage = () => {
     const { theme } = useContext(ThemeContext);
 
     useEffect(() => {
-        const apiUrl = 'http://localhost:8000/tasks';
+        const tasksService = new TasksService();
 
-        fetch(apiUrl)
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then((data) => {
-                if (Array.isArray(data)) {
-                    setTodoData(data.map((task, index) => todoUtil.createTodoItem(task, index)));
-                } else {
-                    console.error('API response does not contain an array:', data);
-                }
+        tasksService
+            .getTasks()
+            .then((tasks) => {
+                setTodoData(tasks);
             })
             .catch((error) => {
-                console.error('Error fetching data from API:', error);
+                console.error('Error loading tasks:', error);
             });
     }, []);
 
@@ -54,6 +46,13 @@ const MainPage = () => {
                         <AddNewTask />
                     </Modal>
                 )}
+
+                {/* 
+                {activeModalId === modalIds.EDIT_TASK_MODAL && (
+                    <Modal title={'Edit task'} onClose={() => setActiveModalId(null)}>
+                        <EditTask id=????/>
+                    </Modal>
+                )} */}
             </div>
         </>
     );

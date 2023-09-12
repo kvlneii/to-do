@@ -1,13 +1,14 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { ThemeContext } from '../../ThemeContext';
 import { useAppContext } from '../../AppContext';
 
 import { Button } from '../../components';
 
-import './AddNewTask.scss';
+import './EditTask.scss';
 import { todoUtil } from '../../utils';
+import TasksService from '../../services/TasksService';
 
-const AddNewTask = () => {
+const EditTask = ({ id }) => {
     const { theme } = useContext(ThemeContext);
     const { setActiveModalId, todoData, setTodoData } = useAppContext();
 
@@ -17,9 +18,27 @@ const AddNewTask = () => {
     const [isImportant, setIsImportant] = useState(false);
     const [isCompleted, setIsCompleted] = useState(false);
 
+    useEffect(() => {
+        const fetchTaskData = async () => {
+            try {
+                const tasksService = new TasksService();
+                const task = await tasksService.getTaskById(id);
+                setTitle(task.label);
+                setDate(task.date);
+                setDescription(task.description);
+                setIsImportant(task.important);
+                setIsCompleted(task.done);
+            } catch (error) {
+                console.error('Error fetching task data:', error);
+            }
+        };
+
+        fetchTaskData();
+    }, [id]);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const newTodoData = await todoUtil.addItem(todoData, {
+        const newTodoData = await todoUtil.editItem(todoData, id, {
             label: title,
             date,
             description,
@@ -32,7 +51,7 @@ const AddNewTask = () => {
     };
 
     return (
-        <form className="add-form" onSubmit={handleSubmit}>
+        <form className="edit-form" onSubmit={handleSubmit}>
             <label>
                 Title
                 <input
@@ -71,7 +90,7 @@ const AddNewTask = () => {
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}></textarea>
             </label>
-            <label className="add-form__mark">
+            <label className="edit-form__mark">
                 <input
                     type="checkbox"
                     checked={isImportant}
@@ -79,7 +98,7 @@ const AddNewTask = () => {
                 />
                 <span>Mark as important</span>
             </label>
-            <label className="add-form__mark">
+            <label className="edit-form__mark">
                 <input
                     type="checkbox"
                     checked={isCompleted}
@@ -88,9 +107,9 @@ const AddNewTask = () => {
                 <span>Mark as completed</span>
             </label>
 
-            <Button label={'Add a task'} onClick={() => {}} className="add-form__btn" />
+            <Button label={'Edit a task'} onClick={() => {}} className="edit-form__btn" />
         </form>
     );
 };
 
-export default AddNewTask;
+export default EditTask;
