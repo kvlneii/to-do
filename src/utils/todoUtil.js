@@ -1,6 +1,6 @@
 import { sortOptionIds, statusIds } from '../consts';
 import { dateUtil } from '../utils';
-import TasksService from '../services/TasksService';
+import { tasksService } from '../services';
 
 const createTodoItem = (item, id) => {
     return {
@@ -15,14 +15,12 @@ const addItem = async (todoData, item) => {
 
     const newItem = createTodoItem(item, newId);
 
-    const tasksService = new TasksService();
     await tasksService.addTask(newItem);
 
     return [newItem, ...todoData];
 };
 
 const deleteItem = async (todoData, id) => {
-    const tasksService = new TasksService();
     await tasksService.deleteTask(id);
     return todoData.filter((item) => item.id !== id);
 };
@@ -33,7 +31,6 @@ const toggleProperty = async (todoData, id, propName) => {
     const oldItem = todoData[idx];
     const newItem = { ...oldItem, [propName]: !oldItem[propName] };
 
-    const tasksService = new TasksService();
     await tasksService.editTask(id, newItem);
 
     return [...todoData.slice(0, idx), newItem, ...todoData.slice(idx + 1)];
@@ -42,7 +39,6 @@ const toggleProperty = async (todoData, id, propName) => {
 const editItem = async (todoData, id, updatedItem) => {
     const idx = todoData.findIndex((item) => item.id === id);
 
-    const tasksService = new TasksService();
     await tasksService.editTask(id, updatedItem);
 
     return [...todoData.slice(0, idx), updatedItem, ...todoData.slice(idx + 1)];

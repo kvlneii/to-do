@@ -4,8 +4,8 @@ import { useAppContext } from '../../AppContext';
 
 import { Button } from '../../components';
 
-import './AddNewTask.scss';
 import { todoUtil } from '../../utils';
+import './AddNewTask.scss';
 
 const AddNewTask = () => {
     const { theme } = useContext(ThemeContext);

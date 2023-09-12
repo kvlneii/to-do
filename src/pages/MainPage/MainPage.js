@@ -4,12 +4,11 @@ import { useAppContext } from '../../AppContext';
 import { ThemeContext } from '../../ThemeContext';
 
 import { modalIds } from '../../consts';
-import TasksService from '../../services/TasksService';
+import { tasksService } from '../../services';
 
 import { Modal } from '../../components';
 import { AddNewTask, Dashboard, Menu, Settings } from '../../containers';
 import './MainPage.scss';
-import EditTask from '../../containers/EditTask/EditTask';
 
 const MainPage = () => {
     const { activeModalId, setActiveModalId, setTodoData } = useAppContext();
@@ -17,8 +16,6 @@ const MainPage = () => {
     const { theme } = useContext(ThemeContext);
 
     useEffect(() => {
-        const tasksService = new TasksService();
-
         tasksService
             .getTasks()
             .then((tasks) => {
@@ -47,10 +44,9 @@ const MainPage = () => {
                     </Modal>
                 )}
 
-                {/* 
-                {activeModalId === modalIds.EDIT_TASK_MODAL && (
+                {/* {activeModalId === modalIds.EDIT_TASK_MODAL && (
                     <Modal title={'Edit task'} onClose={() => setActiveModalId(null)}>
-                        <EditTask id=????/>
+                        <EditTask {task}  />
                     </Modal>
                 )} */}
             </div>

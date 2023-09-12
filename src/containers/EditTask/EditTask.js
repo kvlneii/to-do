@@ -1,12 +1,13 @@
 import React, { useState, useContext, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { ThemeContext } from '../../ThemeContext';
 import { useAppContext } from '../../AppContext';
 
 import { Button } from '../../components';
 
-import './EditTask.scss';
 import { todoUtil } from '../../utils';
-import TasksService from '../../services/TasksService';
+import { tasksService } from '../../services';
+import './EditTask.scss';
 
 const EditTask = ({ id }) => {
     const { theme } = useContext(ThemeContext);
@@ -21,7 +22,6 @@ const EditTask = ({ id }) => {
     useEffect(() => {
         const fetchTaskData = async () => {
             try {
-                const tasksService = new TasksService();
                 const task = await tasksService.getTaskById(id);
                 setTitle(task.label);
                 setDate(task.date);
@@ -110,6 +110,10 @@ const EditTask = ({ id }) => {
             <Button label={'Edit a task'} onClick={() => {}} className="edit-form__btn" />
         </form>
     );
+};
+
+EditTask.propTypes = {
+    id: PropTypes.number.isRequired
 };
 
 export default EditTask;

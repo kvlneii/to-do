@@ -21,7 +21,7 @@ const TodoListItem = ({
     btnClassNames += done ? ' todo-item__buttons__complete--done' : '';
 
     return (
-        <div className="wrapper">
+        <div className="wrapper-todo">
             <div
                 className="todo-item"
                 style={{

@@ -1,100 +1,90 @@
 import { todoUtil } from '../utils';
 
-export default class TasksService {
-    _apiUrl = 'http://localhost:8000/tasks';
+const _apiUrl = 'http://localhost:8000/tasks';
 
-    getTasks = async () => {
-        return fetch(this._apiUrl)
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error(
-                        `Could not fetch ${this._apiUrl}` + `, received ${response.status}`
-                    );
-                }
-                return response.json();
-            })
-            .then((data) => {
-                if (Array.isArray(data)) {
-                    return data.map((task, index) => todoUtil.createTodoItem(task, index));
-                } else {
-                    console.error('API response does not contain an array:', data);
-                    return [];
-                }
-            })
-            .catch((error) => {
-                console.error('Error fetching data from API:', error);
+const getTasks = async () => {
+    return fetch(_apiUrl)
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error(`Could not fetch ${_apiUrl}` + `, received ${response.status}`);
+            }
+            return response.json();
+        })
+        .then((data) => {
+            if (Array.isArray(data)) {
+                return data.map((task, index) => todoUtil.createTodoItem(task, index));
+            } else {
+                console.error('API response does not contain an array:', data);
                 return [];
-            });
-    };
-
-    getTaskById = async (taskId) => {
-        try {
-            const response = await fetch(`${this._apiUrl}/${taskId}`);
-
-            if (!response.ok) {
-                throw new Error(`Could not fetch task with ID ${taskId}`);
             }
+        })
+        .catch((error) => {
+            console.error('Error fetching data from API:', error);
+            return [];
+        });
+};
 
-            const task = await response.json();
-            return task;
-        } catch (error) {
-            console.error(`Error fetching task with ID ${taskId}:`, error);
-            throw error;
+const getTaskById = async (taskId) => {
+    try {
+        const response = await fetch(`${_apiUrl}/${taskId}`);
+
+        if (!response.ok) {
+            throw new Error(`Could not fetch task with ID ${taskId}`);
         }
-    };
 
-    deleteTask = async (taskId) => {
-        try {
-            const response = await fetch(`${this._apiUrl}/${taskId}`, {
-                method: 'DELETE'
-            });
-            if (!response.ok) {
-                throw new Error(`Could not delete task ${taskId}`);
-            }
-            return taskId;
-        } catch (error) {
-            console.error('Error deleting task:', error);
-            throw error;
-        }
-    };
+        const task = await response.json();
+        return task;
+    } catch (error) {
+        console.error(`Error fetching task with ID ${taskId}:`, error);
+    }
+};
 
-    addTask = async (taskData) => {
-        try {
-            const response = await fetch(this._apiUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(taskData)
-            });
+const deleteTask = async (taskId) => {
+    try {
+        await fetch(`${_apiUrl}/${taskId}`, {
+            method: 'DELETE'
+        });
+        return taskId;
+    } catch (error) {
+        console.error('Error deleting task:', error);
+    }
+};
 
-            if (!response.ok) {
-                throw new Error(`Could not add task`);
-            }
+const addTask = async (taskData) => {
+    try {
+        const response = await fetch(_apiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(taskData)
+        });
+        const newTask = await response.json();
+        return newTask;
+    } catch (error) {
+        console.error('Error adding task:', error);
+    }
+};
 
-            const newTask = await response.json();
-            return newTask;
-        } catch (error) {
-            console.error('Error adding task:', error);
-            throw error;
-        }
-    };
+const editTask = async (taskId, updatedData) => {
+    try {
+        const response = await fetch(`${_apiUrl}/${taskId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updatedData)
+        });
+        return response;
+    } catch (error) {
+        console.error('Error updating item:', error);
+    }
+};
 
-    editTask = async (taskId, updatedData) => {
-        try {
-            const response = await fetch(`${this._apiUrl}/${taskId}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(updatedData)
-            });
-
-            if (!response.ok) {
-                throw new Error('Failed to update item.');
-            }
-        } catch (error) {
-            console.error('Error updating item:', error);
-        }
-    };
-}
+export const tasksService = {
+    getTasks,
+    getTaskById,
+    deleteTask,
+    addTask,
+    editTask
+};
