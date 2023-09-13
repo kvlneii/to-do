@@ -36,6 +36,10 @@
 
     &__item {
         padding: 5px;
+        max-height: 2.2rem; 
+        overflow: hidden;
+        text-overflow: ellipsis; 
+        white-space: nowrap;
 
         &--completed {
             text-decoration: line-through;
