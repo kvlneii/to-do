@@ -1,13 +1,15 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+import PropTypes from 'prop-types';
+
 import { ThemeContext } from '../../ThemeContext';
 import { useAppContext } from '../../AppContext';
 
 import { Button } from '../../components';
 
 import { todoUtil } from '../../utils';
-import './AddNewTask.scss';
+import './TaskForm.scss';
 
-const AddNewTask = () => {
+const TaskForm = ({ task, onSave }) => {
     const { theme } = useContext(ThemeContext);
     const { setActiveModalId, todoData, setTodoData } = useAppContext();
 
@@ -17,22 +19,41 @@ const AddNewTask = () => {
     const [isImportant, setIsImportant] = useState(false);
     const [isCompleted, setIsCompleted] = useState(false);
 
+    useEffect(() => {
+        if (task) {
+            setTitle(task.label);
+            setDate(task.date);
+            setDescription(task.description);
+            setIsImportant(task.important);
+            setIsCompleted(task.done);
+        }
+    }, []);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const newTodoData = await todoUtil.addItem(todoData, {
+
+        let newId;
+        if (!task) {
+            newId = todoUtil.getId(todoData);
+        }
+
+        const newItem = {
+            id: newId || task.id,
             label: title,
             date,
             description,
             important: isImportant,
             done: isCompleted
-        });
+        };
 
-        setTodoData(newTodoData);
+        setTodoData(todoUtil.updateTodo(todoData, newItem));
+
         setActiveModalId(null);
+        onSave(newItem);
     };
 
     return (
-        <form className="add-form" onSubmit={handleSubmit}>
+        <form className="task-form" onSubmit={handleSubmit}>
             <label>
                 Title
                 <input
@@ -71,7 +92,7 @@ const AddNewTask = () => {
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}></textarea>
             </label>
-            <label className="add-form__mark">
+            <label className="task-form__mark">
                 <input
                     type="checkbox"
                     checked={isImportant}
@@ -79,7 +100,7 @@ const AddNewTask = () => {
                 />
                 <span>Mark as important</span>
             </label>
-            <label className="add-form__mark">
+            <label className="task-form__mark">
                 <input
                     type="checkbox"
                     checked={isCompleted}
@@ -88,9 +109,18 @@ const AddNewTask = () => {
                 <span>Mark as completed</span>
             </label>
 
-            <Button label={'Add a task'} onClick={() => {}} className="add-form__btn" />
+            <Button
+                label={task ? 'Edit task' : 'Add a task'}
+                onClick={() => {}}
+                className="task-form__btn"
+            />
         </form>
     );
 };
 
-export default AddNewTask;
+TaskForm.propTypes = {
+    task: PropTypes.object,
+    onSave: PropTypes.func.isRequired
+};
+
+export default TaskForm;

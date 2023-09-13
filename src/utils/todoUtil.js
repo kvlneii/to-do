@@ -1,6 +1,5 @@
 import { sortOptionIds, statusIds } from '../consts';
 import { dateUtil } from '../utils';
-import { tasksService } from '../services';
 
 const createTodoItem = (item, id) => {
     return {
@@ -9,37 +8,42 @@ const createTodoItem = (item, id) => {
     };
 };
 
-const addItem = async (todoData, item) => {
+const addItem = (todoData, item) => {
+    return createTodoItem(item, getId(todoData));
+};
+
+const getId = (todoData) => {
     const maxId = Math.max(...todoData.map((todo) => todo.id), -1);
     const newId = maxId + 1;
 
-    const newItem = createTodoItem(item, newId);
-
-    await tasksService.addTask(newItem);
-
-    return [newItem, ...todoData];
+    return newId;
 };
 
-const deleteItem = async (todoData, id) => {
-    await tasksService.deleteTask(id);
+const deleteItem = (todoData, id) => {
     return todoData.filter((item) => item.id !== id);
 };
 
-const toggleProperty = async (todoData, id, propName) => {
+const toggleProperty = (todoData, id, propName) => {
     const idx = todoData.findIndex((item) => item.id === id);
 
     const oldItem = todoData[idx];
     const newItem = { ...oldItem, [propName]: !oldItem[propName] };
 
-    await tasksService.editTask(id, newItem);
-
-    return [...todoData.slice(0, idx), newItem, ...todoData.slice(idx + 1)];
+    return newItem;
 };
 
-const editItem = async (todoData, id, updatedItem) => {
+const editItem = (todoData, id, updatedItem) => {
     const idx = todoData.findIndex((item) => item.id === id);
 
-    await tasksService.editTask(id, updatedItem);
+    return [...todoData.slice(0, idx), updatedItem, ...todoData.slice(idx + 1)];
+};
+
+const updateTodo = (todoData, updatedItem) => {
+    const idx = todoData.findIndex((item) => item.id === updatedItem.id);
+
+    if (idx === -1) {
+        return [updatedItem, ...todoData];
+    }
 
     return [...todoData.slice(0, idx), updatedItem, ...todoData.slice(idx + 1)];
 };
@@ -98,9 +102,11 @@ const getVisibleItems = (todoData, searchedTerm, sortBy, filter) => {
 export const todoUtil = {
     createTodoItem,
     addItem,
+    getId,
     deleteItem,
     toggleProperty,
     editItem,
+    updateTodo,
     getTodayTasks,
     getVisibleItems
 };

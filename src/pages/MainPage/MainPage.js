@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import { useAppContext } from '../../AppContext';
 import { ThemeContext } from '../../ThemeContext';
@@ -7,7 +7,7 @@ import { modalIds } from '../../consts';
 import { tasksService } from '../../services';
 
 import { Modal } from '../../components';
-import { AddNewTask, Dashboard, Menu, Settings } from '../../containers';
+import { TaskForm, Dashboard, Menu, Settings } from '../../containers';
 import './MainPage.scss';
 
 const MainPage = () => {
@@ -15,16 +15,26 @@ const MainPage = () => {
 
     const { theme } = useContext(ThemeContext);
 
+    const [editedTask, setEditedTask] = useState(null);
+
     useEffect(() => {
         tasksService
             .getTasks()
             .then((tasks) => {
-                setTodoData(tasks);
+                setTodoData(tasks.reverse());
             })
             .catch((error) => {
                 console.error('Error loading tasks:', error);
             });
     }, []);
+
+    const createTask = async (newItem) => {
+        await tasksService.addTask(newItem);
+    };
+
+    const editTask = async (updatedItem) => {
+        await tasksService.editTask(updatedItem.id, updatedItem);
+    };
 
     return (
         <>
@@ -35,20 +45,23 @@ const MainPage = () => {
                     color: theme.secondaryColor
                 }}>
                 <Menu />
-                <Dashboard />
+                <Dashboard setEditedTask={setEditedTask} />
                 <Settings />
 
                 {activeModalId === modalIds.CREATE_TASK_MODAL && (
                     <Modal title={'Add new task'} onClose={() => setActiveModalId(null)}>
-                        <AddNewTask />
+                        <TaskForm onSave={(newItem) => createTask(newItem)} />
                     </Modal>
                 )}
 
-                {/* {activeModalId === modalIds.EDIT_TASK_MODAL && (
+                {activeModalId === modalIds.EDIT_TASK_MODAL && (
                     <Modal title={'Edit task'} onClose={() => setActiveModalId(null)}>
-                        <EditTask {task}  />
+                        <TaskForm
+                            task={editedTask}
+                            onSave={(updatedItem) => editTask(updatedItem)}
+                        />
                     </Modal>
-                )} */}
+                )}
             </div>
         </>
     );
