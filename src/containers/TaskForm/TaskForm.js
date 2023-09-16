@@ -11,7 +11,7 @@ import './TaskForm.scss';
 
 const TaskForm = ({ task, onSave }) => {
     const { theme } = useContext(ThemeContext);
-    const { setActiveModalId, todoData, setTodoData } = useAppContext();
+    const { setActiveModalId, todoData } = useAppContext();
 
     const [title, setTitle] = useState('');
     const [date, setDate] = useState('');
@@ -38,15 +38,13 @@ const TaskForm = ({ task, onSave }) => {
         }
 
         const newItem = {
-            id: newId || task.id,
+            id: task?.id || newId,
             label: title,
             date,
             description,
             important: isImportant,
             done: isCompleted
         };
-
-        setTodoData(todoUtil.updateTodo(todoData, newItem));
 
         setActiveModalId(null);
         onSave(newItem);

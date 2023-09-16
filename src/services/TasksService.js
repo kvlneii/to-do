@@ -1,27 +1,18 @@
-import { todoUtil } from '../utils';
-
-const _apiUrl = 'http://localhost:8000/tasks';
+const _apiUrl = `${process.env.REACT_APP_API_URL}/tasks`;
 
 const getTasks = async () => {
-    return fetch(_apiUrl)
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error(`Could not fetch ${_apiUrl}` + `, received ${response.status}`);
-            }
-            return response.json();
-        })
-        .then((data) => {
-            if (Array.isArray(data)) {
-                return data.map((task, index) => todoUtil.createTodoItem(task, index));
-            } else {
-                console.error('API response does not contain an array:', data);
-                return [];
-            }
-        })
-        .catch((error) => {
-            console.error('Error fetching data from API:', error);
-            return [];
-        });
+    try {
+        const response = await fetch(_apiUrl);
+
+        if (!response.ok) {
+            throw new Error(`Could not fetch ${_apiUrl}` + `, received ${response.status}`);
+        }
+
+        return response.json();
+    } catch (error) {
+        console.error('Error fetching data from API:', error);
+        return [];
+    }
 };
 
 const getTaskById = async (taskId) => {

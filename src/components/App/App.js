@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react';
-import { ThemeContext } from '../../theme-context';
+import { ThemeContext } from '../../ThemeContext';
 import Menu from '../Menu/Menu';
 import Dashboard from '../Dashboard/Dashboard';
 import Settings from '../Settings/Settings';

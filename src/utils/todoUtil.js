@@ -1,26 +1,8 @@
 import { sortOptionIds, statusIds } from '../consts';
 import { dateUtil } from '../utils';
 
-const createTodoItem = (item, id) => {
-    return {
-        ...item,
-        id
-    };
-};
-
-const addItem = (todoData, item) => {
-    return createTodoItem(item, getId(todoData));
-};
-
 const getId = (todoData) => {
-    const maxId = Math.max(...todoData.map((todo) => todo.id), -1);
-    const newId = maxId + 1;
-
-    return newId;
-};
-
-const deleteItem = (todoData, id) => {
-    return todoData.filter((item) => item.id !== id);
+    return todoData?.length > 0 ? todoData[length - 1]?.id + 1 : 0;
 };
 
 const toggleProperty = (todoData, id, propName) => {
@@ -30,22 +12,6 @@ const toggleProperty = (todoData, id, propName) => {
     const newItem = { ...oldItem, [propName]: !oldItem[propName] };
 
     return newItem;
-};
-
-const editItem = (todoData, id, updatedItem) => {
-    const idx = todoData.findIndex((item) => item.id === id);
-
-    return [...todoData.slice(0, idx), updatedItem, ...todoData.slice(idx + 1)];
-};
-
-const updateTodo = (todoData, updatedItem) => {
-    const idx = todoData.findIndex((item) => item.id === updatedItem.id);
-
-    if (idx === -1) {
-        return [updatedItem, ...todoData];
-    }
-
-    return [...todoData.slice(0, idx), updatedItem, ...todoData.slice(idx + 1)];
 };
 
 const search = (items, searchedTerm) => {
@@ -100,13 +66,8 @@ const getVisibleItems = (todoData, searchedTerm, sortBy, filter) => {
 };
 
 export const todoUtil = {
-    createTodoItem,
-    addItem,
     getId,
-    deleteItem,
     toggleProperty,
-    editItem,
-    updateTodo,
     getTodayTasks,
     getVisibleItems
 };

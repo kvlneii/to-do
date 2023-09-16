@@ -17,26 +17,32 @@ const MainPage = () => {
 
     const [editedTask, setEditedTask] = useState(null);
 
-    useEffect(async () => {
-        const tasks = await fetchData();
-        setTodoData(tasks);
-    }, []);
-
     const fetchData = async () => {
         try {
             const tasks = await tasksService.getTasks();
-            return tasks.reverse();
+            setTodoData(tasks.reverse());
         } catch (error) {
             console.error('Error loading tasks:', error);
         }
     };
 
+    useEffect(() => {
+        fetchData();
+    }, []);
+
     const createTask = async (newItem) => {
         await tasksService.addTask(newItem);
+        fetchData();
     };
 
     const editTask = async (updatedItem) => {
         await tasksService.editTask(updatedItem.id, updatedItem);
+        fetchData();
+    };
+
+    const deleteTask = async (taskId) => {
+        await tasksService.deleteTask(taskId);
+        fetchData();
     };
 
     return (
@@ -48,7 +54,7 @@ const MainPage = () => {
                     color: theme.secondaryColor
                 }}>
                 <Menu />
-                <Dashboard setEditedTask={setEditedTask} />
+                <Dashboard setEditedTask={setEditedTask} onDelete={deleteTask} onEdit={editTask} />
                 <Settings />
 
                 {activeModalId === modalIds.CREATE_TASK_MODAL && (
