@@ -2,6 +2,9 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 
 import { DateIcon, ImportantIcon, EditIcon, DeleteIcon } from '../../../icons';
+
+import { IconWrapper } from '../../../components';
+
 import { ThemeContext } from '../../../ThemeContext';
 
 import './TodoListItem.scss';
@@ -47,15 +50,20 @@ const TodoListItem = ({
                         {done ? 'completed' : 'uncompleted'}
                     </button>
 
-                    <ImportantIcon
-                        onToggleImportant={onToggleImportant}
-                        className={'todo-item__buttons__icons todo-item__buttons__icons--important'}
-                        important={important}
-                    />
+                    <IconWrapper
+                        onClick={onToggleImportant}
+                        className="todo-item__buttons__icons todo-item__buttons__icons--important"
+                        important={important}>
+                        <ImportantIcon />
+                    </IconWrapper>
 
-                    <EditIcon onEdit={onEdit} className={'todo-item__buttons__icons'} />
+                    <IconWrapper onClick={onEdit} className="todo-item__buttons__icons">
+                        <EditIcon />
+                    </IconWrapper>
 
-                    <DeleteIcon onDeleted={onDeleted} className={'todo-item__buttons__icons'} />
+                    <IconWrapper onClick={onDeleted} className="todo-item__buttons__icons">
+                        <DeleteIcon />
+                    </IconWrapper>
                 </div>
             </div>
         </div>

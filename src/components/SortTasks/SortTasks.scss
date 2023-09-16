@@ -8,6 +8,10 @@
         line-height: 2rem;
         font-weight: 500;
         margin: 2rem 0;
+
+        @media (max-width: 590px) {
+            font-size: 1.3rem;
+        }
     }
 
     &__options{
@@ -27,6 +31,10 @@
         &:focus,
         &:active{
             border-color: #5b21b6 !important;
+        }
+
+        @media (max-width: 590px) {
+            padding: 0.5rem;
         }
     }
 }

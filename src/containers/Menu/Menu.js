@@ -13,7 +13,7 @@ const Menu = () => {
 
     return (
         <div
-            className="wrapper"
+            className="menu-wrapper"
             style={{
                 backgroundColor: theme.secondaryBackgroundColor,
                 color: theme.secondaryColor

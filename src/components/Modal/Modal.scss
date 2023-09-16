@@ -26,6 +26,16 @@
                 font-size: 1.5rem;
                 line-height: 2rem;
                 font-weight: 500;
+
+                @media (max-width: 460px) {
+                    font-size: 1.3rem;
+                    line-height: 1.7rem;
+                }
+
+                @media (max-width: 320px) {
+                    font-size: 1.1rem;
+                    line-height: 1rem;
+                }
             }
 
             &__icon {

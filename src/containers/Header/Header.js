@@ -5,8 +5,9 @@ import { useAppContext } from '../../AppContext';
 
 import { modalIds } from '../../consts';
 
-import { Button, SearchInput } from '../../components';
+import { Button, IconWrapper, SearchInput } from '../../components';
 import './Header.scss';
+import { MenuIcon } from '../../icons';
 
 const Header = () => {
     const { theme } = useContext(ThemeContext);
@@ -22,13 +23,23 @@ const Header = () => {
 
     return (
         <div className="header">
-            <SearchInput />
-            <p style={{ color: theme.secondaryColor }}>{formatDate()}</p>
-            <div className="header__btn">
+            <div className="header__search">
+                <IconWrapper onClick={() => {}} className={'header__search__icon'}>
+                    <MenuIcon />
+                </IconWrapper>
+                <SearchInput />
+            </div>
+            <p className="header__date" style={{ color: theme.secondaryColor }}>
+                {formatDate()}
+            </p>
+            <div className="header__btn header__btn--desktop">
                 <Button
                     label="Add new task"
                     onClick={() => setActiveModalId(modalIds.CREATE_TASK_MODAL)}
                 />
+            </div>
+            <div className="header__btn header__btn--mobile">
+                <Button label="+" onClick={() => setActiveModalId(modalIds.CREATE_TASK_MODAL)} />
             </div>
         </div>
     );

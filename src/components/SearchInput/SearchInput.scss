@@ -5,6 +5,18 @@
     position: relative;
     width: 18rem;
 
+    @media (max-width: 590px) {
+        width: 14rem;
+    }
+
+    @media (max-width: 490px) {
+        width: 12rem;
+    }
+
+    @media (max-width: 390px) {
+        width: 11rem;
+    }
+
     &__input{
         border-radius: 0.5rem;
         border: solid 2.5px transparent;

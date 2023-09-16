@@ -68,6 +68,11 @@
             border-radius: 30px;
             border: none;
 
+            @media (max-width: 600px) and (min-width:540px) {
+                padding: 0.2rem 0.5rem;
+                font-weight: 400;
+            }
+
             &--done {
                 background-color: #a7f3d0;
                 color: #1f765e;

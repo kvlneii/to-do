@@ -1,6 +1,7 @@
 import { DateIcon } from './DateIcon';
-import { ImportantIcon } from './ImportantIcon';
-import { EditIcon } from './EditIcon';
 import { DeleteIcon } from './DeleteIcon';
+import { EditIcon } from './EditIcon';
+import { ImportantIcon } from './ImportantIcon';
+import { MenuIcon } from './MenuIcon';
 
-export { DateIcon, ImportantIcon, EditIcon, DeleteIcon };
+export { DateIcon, DeleteIcon, EditIcon, ImportantIcon, MenuIcon };
