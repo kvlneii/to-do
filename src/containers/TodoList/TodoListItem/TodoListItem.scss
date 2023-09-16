@@ -23,6 +23,7 @@
         &__date {
             width: 100%;
             display: flex;
+            align-items: flex-start;
             margin-top: auto;
 
             &__icon {
@@ -34,10 +35,17 @@
 
         &__label {
             font-weight: 500;
+            max-height: 2.5rem; 
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
         }
 
         &__desc {
-            max-height: 5rem;
+            max-height: 4rem; 
+            overflow: hidden;
+            text-overflow: ellipsis; 
+            white-space: pre-line; 
             overflow-y: auto;
         }
     }
@@ -59,6 +67,11 @@
             font-size: 100%;
             border-radius: 30px;
             border: none;
+
+            @media (max-width: 600px) and (min-width:540px) {
+                padding: 0.2rem 0.5rem;
+                font-weight: 400;
+            }
 
             &--done {
                 background-color: #a7f3d0;

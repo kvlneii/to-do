@@ -17,16 +17,19 @@ const MainPage = () => {
 
     const [editedTask, setEditedTask] = useState(null);
 
-    useEffect(() => {
-        tasksService
-            .getTasks()
-            .then((tasks) => {
-                setTodoData(tasks.reverse());
-            })
-            .catch((error) => {
-                console.error('Error loading tasks:', error);
-            });
+    useEffect(async () => {
+        const tasks = await fetchData();
+        setTodoData(tasks);
     }, []);
+
+    const fetchData = async () => {
+        try {
+            const tasks = await tasksService.getTasks();
+            return tasks.reverse();
+        } catch (error) {
+            console.error('Error loading tasks:', error);
+        }
+    };
 
     const createTask = async (newItem) => {
         await tasksService.addTask(newItem);

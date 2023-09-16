@@ -1,33 +1,13 @@
-.task-form {
+.add-form {
     display: flex;
     flex-direction: column;
     width: 30rem;
     border-radius: 0.5rem;
 
-    @media (max-width: 800px) {
-        width: 20rem;
-    }
-
-    @media (max-width: 420px) {
-        width: 15rem;
-    }
-
-    @media (max-width: 320px) {
-        width: 12rem;
-    }
-
     label {
         margin-bottom: 1rem;
         font-size: 1rem;
         line-height: 1.5rem;
-
-        @media (max-width: 800px) {
-            margin-bottom: 0.7rem;
-        }
-
-        @media (max-width: 460px) {
-            font-size: 0.9rem;
-        }
     }
 
     input,
@@ -59,10 +39,6 @@
     textarea {
         resize: none;
         height: 90px;
-
-        @media (max-width: 800px) {
-            height: 70px;
-        }
     }
 
     &__mark {

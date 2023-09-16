@@ -14,7 +14,7 @@ const Darkmode = () => {
                 style={{
                     color: theme.primaryColor
                 }}>
-                {isDark ? 'Light Mode' : 'Dark Mode'}
+                {isDark ? 'Light' : 'Dark'} <span className="switcher__text__span"> Mode</span>
             </label>
             <label className="switcher__button">
                 <input id="darkmode" type="checkbox" onChange={toggle} checked={isDark} />

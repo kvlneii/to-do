@@ -3,4 +3,45 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 2rem;
+
+    @media (max-width: 1024px) {
+        margin-bottom: 0.9rem;
+    }
+    @media (max-width: 890px) {
+        margin-bottom: 0.5rem;
+    }
+
+    &__search{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &__icon{
+            display: none;
+            margin-right: 1rem;
+            @media (max-width: 1024px) {
+                display: block;
+            }
+        }
+    }
+
+    &__date{
+        @media (max-width: 890px) {
+            display: none;
+        }
+    }
+
+    &__btn{
+        &--desktop{
+            @media (max-width: 440px) {
+                display: none;
+            }
+        }
+
+        &--mobile{
+            display: none;
+            @media (max-width: 440px) {
+                display: block;
+            }
+        }
+    }
 }

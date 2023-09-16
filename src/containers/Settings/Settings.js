@@ -8,7 +8,9 @@ const Settings = () => {
     const { theme } = useContext(ThemeContext);
 
     return (
-        <div className="wrapper" style={{ backgroundColor: theme.secondaryBackgroundColor }}>
+        <div
+            className="settings-wrapper"
+            style={{ backgroundColor: theme.secondaryBackgroundColor }}>
             <div className="settings-container">
                 <Darkmode />
                 <Progress />

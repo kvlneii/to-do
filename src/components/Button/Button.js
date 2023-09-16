@@ -6,7 +6,6 @@ import './Button.scss';
 
 const Button = ({ label, onClick }) => {
     const { theme } = useContext(ThemeContext);
-
     return (
         <button className="btn" style={{ backgroundColor: theme.buttonsColor }} onClick={onClick}>
             {label}
