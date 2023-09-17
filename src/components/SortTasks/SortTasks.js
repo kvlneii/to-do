@@ -4,9 +4,9 @@ import { ThemeContext } from '../../ThemeContext';
 import { useAppContext } from '../../AppContext';
 
 import { allStatuses, allSortOptions } from '../../consts';
+import { todoUtil } from '../../utils';
 
 import './SortTasks.scss';
-import { todoUtil } from '../../utils';
 
 const SortTasks = () => {
     const [title, setTitle] = useState();

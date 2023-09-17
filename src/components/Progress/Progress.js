@@ -1,8 +1,10 @@
 import { useContext, useMemo } from 'react';
+
 import { ThemeContext } from '../../ThemeContext';
 import { useAppContext } from '../../AppContext';
 
 import { todoUtil } from '../../utils';
+
 import './Progress.scss';
 
 const Progress = () => {

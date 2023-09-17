@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 
+import { ThemeContext } from '../../../ThemeContext';
+
 import { DateIcon, ImportantIcon, EditIcon, DeleteIcon } from '../../../icons';
 
 import { IconWrapper } from '../../../components';
-
-import { ThemeContext } from '../../../ThemeContext';
 
 import './TodoListItem.scss';
 
@@ -22,11 +22,8 @@ const TodoListItem = ({
 }) => {
     const { theme } = useContext(ThemeContext);
 
-    let btnClassNames = 'todo-item__buttons__complete';
-    btnClassNames += done ? ' todo-item__buttons__complete--done' : '';
-
     return (
-        <div className="wrapper-todo">
+        <div className="todo-wrapper">
             <div
                 className="todo-item"
                 style={{
@@ -46,7 +43,11 @@ const TodoListItem = ({
                     </div>
                 </div>
                 <div className="todo-item__buttons">
-                    <button className={btnClassNames} onClick={onToggleComplete}>
+                    <button
+                        className={`todo-item__buttons__complete${
+                            done ? ' todo-item__buttons__complete--done' : ''
+                        }`}
+                        onClick={onToggleComplete}>
                         {done ? 'completed' : 'uncompleted'}
                     </button>
 

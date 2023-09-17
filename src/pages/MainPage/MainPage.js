@@ -8,6 +8,7 @@ import { tasksService } from '../../services';
 
 import { Modal } from '../../components';
 import { TaskForm, Dashboard, Menu, Settings } from '../../containers';
+
 import './MainPage.scss';
 
 const MainPage = () => {

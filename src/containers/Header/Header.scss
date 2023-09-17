@@ -18,6 +18,7 @@
         &__icon{
             display: none;
             margin-right: 1rem;
+            padding: 5px;
             @media (max-width: 1024px) {
                 display: block;
             }

@@ -4,9 +4,10 @@ import PropTypes from 'prop-types';
 import { ThemeContext } from '../../ThemeContext';
 import { useAppContext } from '../../AppContext';
 
+import { todoUtil } from '../../utils';
+
 import { Button } from '../../components';
 
-import { todoUtil } from '../../utils';
 import './TaskForm.scss';
 
 const TaskForm = ({ task, onSave }) => {

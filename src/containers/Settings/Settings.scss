@@ -1,12 +1,16 @@
-.settings-wrapper {
-    width: 100%;
-    height: 100%;
-    @media (max-width: 750px) {
-        display: none;
+.settings{
+    &-wrapper{
+        width: 100%;
+        height: 100%;
+        
+        @media (max-width: 750px) {
+            transform: translateX(100%);
+            position: absolute;
+        }
     }
-}
 
-.settings-container {
-    padding: 1.25rem;
-    padding-top: 2rem;
+    &-container {
+        padding: 1.25rem;
+        padding-top: 2rem;
+    }
 }

@@ -7,6 +7,7 @@ import { propertyNames, modalIds } from '../../consts';
 import { todoUtil } from '../../utils';
 
 import TodoListItem from './TodoListItem/TodoListItem';
+
 import './TodoList.scss';
 
 const TodoList = ({ setEditedTask, onDelete, onEdit }) => {

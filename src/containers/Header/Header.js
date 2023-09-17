@@ -4,14 +4,15 @@ import { ThemeContext } from '../../ThemeContext';
 import { useAppContext } from '../../AppContext';
 
 import { modalIds } from '../../consts';
+import { MenuIcon } from '../../icons';
 
 import { Button, IconWrapper, SearchInput } from '../../components';
+
 import './Header.scss';
-import { MenuIcon } from '../../icons';
 
 const Header = () => {
     const { theme } = useContext(ThemeContext);
-    const { setActiveModalId } = useAppContext();
+    const { setActiveModalId, setActiveMobileMenu } = useAppContext();
 
     const formatDate = () => {
         const options = { month: 'short', day: '2-digit' };
@@ -24,7 +25,9 @@ const Header = () => {
     return (
         <div className="header">
             <div className="header__search">
-                <IconWrapper onClick={() => {}} className={'header__search__icon'}>
+                <IconWrapper
+                    onClick={() => setActiveMobileMenu(true)}
+                    className={'header__search__icon'}>
                     <MenuIcon />
                 </IconWrapper>
                 <SearchInput />
