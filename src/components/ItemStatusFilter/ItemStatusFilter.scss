@@ -20,18 +20,18 @@
             border-right: 4px solid #f43f5e;
         }
 
-        &--darkModeActive {
+        &--dark-active {
             background-color: rgba(51, 65, 85, 0.2);
             color: #e2e8f0;
             border-right: 4px solid #e2e8f0;
         }
-
-        &--darkMode:hover {
-            color: #e2e8f0;
-        }
-
+        
         &:hover {
             color: #f43f5e;
+        }
+        
+        &--dark-mode:hover {
+            color: #e2e8f0;
         }
     }
 }

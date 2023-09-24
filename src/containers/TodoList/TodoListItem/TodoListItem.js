@@ -31,38 +31,36 @@ const TodoListItem = ({
                     color: theme.secondaryColor
                 }}>
                 <div className="todo-item__task">
-                    <span className="todo-item__task__label" style={{ color: theme.primaryTitle }}>
+                    <span className="todo-item__label" style={{ color: theme.primaryTitle }}>
                         {label}
                     </span>
-                    <p className="todo-item__task__desc">{description}</p>
-                    <div className="todo-item__task__date">
-                        <span className="todo-item__task__date__icon">
+                    <p className="todo-item__desc">{description}</p>
+                    <div className="todo-item__date">
+                        <span className="todo-item__icon">
                             <DateIcon />
                         </span>
                         <span>{date}</span>
                     </div>
                 </div>
-                <div className="todo-item__buttons">
+                <div className="todo-item__buttons actions">
                     <button
-                        className={`todo-item__buttons__complete${
-                            done ? ' todo-item__buttons__complete--done' : ''
-                        }`}
+                        className={`actions__complete${done ? ' actions__complete--done' : ''}`}
                         onClick={onToggleComplete}>
                         {done ? 'completed' : 'uncompleted'}
                     </button>
 
                     <IconWrapper
                         onClick={onToggleImportant}
-                        className="todo-item__buttons__icons todo-item__buttons__icons--important"
+                        className="actions__icons actions__icons--important"
                         important={important}>
                         <ImportantIcon />
                     </IconWrapper>
 
-                    <IconWrapper onClick={onEdit} className="todo-item__buttons__icons">
+                    <IconWrapper onClick={onEdit} className="actions__icons">
                         <EditIcon />
                     </IconWrapper>
 
-                    <IconWrapper onClick={onDeleted} className="todo-item__buttons__icons">
+                    <IconWrapper onClick={onDeleted} className="actions__icons">
                         <DeleteIcon />
                     </IconWrapper>
                 </div>

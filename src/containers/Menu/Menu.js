@@ -25,7 +25,7 @@ const Menu = () => {
                 }}>
                 <div className="menu" onClick={(e) => e.stopPropagation()}>
                     <div className="menu__container" onClick={() => setActiveMobileMenu(false)}>
-                        <h1 className="menu__container__label">To-do list</h1>
+                        <h1 className="menu__label">To-do list</h1>
                         <Button
                             label="Add new task"
                             onClick={() => setActiveModalId(modalIds.CREATE_TASK_MODAL)}

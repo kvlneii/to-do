@@ -2,7 +2,7 @@ import { useContext } from 'react';
 
 import { ThemeContext } from '../../ThemeContext';
 
-import { Darkmode, Progress } from '../../components';
+import { Darkmode, Progress, TasksList } from '../../components';
 
 import './Settings.scss';
 
@@ -16,6 +16,7 @@ const Settings = () => {
             <div className="settings-container">
                 <Darkmode />
                 <Progress />
+                <TasksList />
             </div>
         </div>
     );

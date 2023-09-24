@@ -19,10 +19,10 @@ const ItemStatusFilter = () => {
     const statuses = allStatuses.map(({ name, label }) => {
         const isActive = filter === name;
         let statusClassNames = 'navigation__item';
-        statusClassNames += isDark ? ' navigation__item--darkMode' : '';
+        statusClassNames += isDark ? ' navigation__item--dark-mode' : '';
         statusClassNames += isActive
             ? isDark
-                ? ' navigation__item--darkModeActive'
+                ? ' navigation__item--dark-active'
                 : ' navigation__item--active'
             : '';
 

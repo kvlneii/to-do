@@ -66,7 +66,7 @@ const editTask = async (taskId, updatedData) => {
     }
 };
 
-export const tasksService = {
+export const todoService = {
     getTasks,
     getTaskById,
     deleteTask,

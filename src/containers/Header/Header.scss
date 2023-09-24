@@ -11,34 +11,35 @@
         margin-bottom: 0.5rem;
     }
 
-    &__search{
+    &__search {
         display: flex;
         align-items: center;
         justify-content: center;
-        &__icon{
-            display: none;
-            margin-right: 1rem;
-            padding: 5px;
-            @media (max-width: 1024px) {
-                display: block;
-            }
+    }
+
+    &__icon {
+        display: none;
+        margin-right: 1rem;
+        padding: 5px;
+        @media (max-width: 1024px) {
+            display: block;
         }
     }
 
-    &__date{
+    &__date {
         @media (max-width: 890px) {
             display: none;
         }
     }
 
-    &__btn{
-        &--desktop{
+    &__btn {
+        &--desktop {
             @media (max-width: 440px) {
                 display: none;
             }
         }
 
-        &--mobile{
+        &--mobile {
             display: none;
             @media (max-width: 440px) {
                 display: block;

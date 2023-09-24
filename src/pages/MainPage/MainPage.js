@@ -4,7 +4,7 @@ import { useAppContext } from '../../AppContext';
 import { ThemeContext } from '../../ThemeContext';
 
 import { modalIds } from '../../consts';
-import { tasksService } from '../../services';
+import { todoService } from '../../services';
 
 import { Modal } from '../../components';
 import { TaskForm, Dashboard, Menu, Settings } from '../../containers';
@@ -20,7 +20,7 @@ const MainPage = () => {
 
     const fetchData = async () => {
         try {
-            const tasks = await tasksService.getTasks();
+            const tasks = await todoService.getTasks();
             setTodoData(tasks.reverse());
         } catch (error) {
             console.error('Error loading tasks:', error);
@@ -32,17 +32,17 @@ const MainPage = () => {
     }, []);
 
     const createTask = async (newItem) => {
-        await tasksService.addTask(newItem);
+        await todoService.addTask(newItem);
         fetchData();
     };
 
     const editTask = async (updatedItem) => {
-        await tasksService.editTask(updatedItem.id, updatedItem);
+        await todoService.editTask(updatedItem.id, updatedItem);
         fetchData();
     };
 
     const deleteTask = async (taskId) => {
-        await tasksService.deleteTask(taskId);
+        await todoService.deleteTask(taskId);
         fetchData();
     };
 

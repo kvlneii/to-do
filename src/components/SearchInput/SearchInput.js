@@ -5,7 +5,7 @@ import { useAppContext } from '../../AppContext';
 
 import { SearchIcon } from '../../icons';
 
-import IconWrapper from '../IconWrapper/IconWrapper';
+import { IconWrapper } from '../index';
 
 import './SearchInput.scss';
 

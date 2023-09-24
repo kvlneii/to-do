@@ -44,7 +44,7 @@ const SortTasks = () => {
                 {title} ({todos.length} {todos.length === 1 ? 'task' : 'tasks'})
             </h1>
             <select
-                className="sort-tasks__options"
+                className="sort-tasks__options options-sort"
                 style={{
                     backgroundColor: theme.secondaryBackgroundColor,
                     color: theme.secondaryColor
