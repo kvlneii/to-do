@@ -10,7 +10,12 @@ const formatDate = () => {
     return `${year}, ${formattedDate}`;
 };
 
+const formattedDate = (date) => {
+    return date.toISOString().split('T')[0];
+};
+
 export const dateUtil = {
     formatCurrentDate,
-    formatDate
+    formatDate,
+    formattedDate
 };

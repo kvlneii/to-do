@@ -1,21 +1,23 @@
 import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import DatePicker from 'react-datepicker';
 
 import { ThemeContext } from '../../ThemeContext';
 import { useAppContext } from '../../AppContext';
 
-import { todoUtil } from '../../utils';
+import { todoUtil, dateUtil } from '../../utils';
 
 import { Button } from '../../components';
 
 import './TaskForm.scss';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const TaskForm = ({ task, onSave }) => {
     const { theme } = useContext(ThemeContext);
     const { setActiveModalId, todoData } = useAppContext();
 
     const [title, setTitle] = useState('');
-    const [date, setDate] = useState('');
+    const [date, setDate] = useState(new Date());
     const [description, setDescription] = useState('');
     const [isImportant, setIsImportant] = useState(false);
     const [isCompleted, setIsCompleted] = useState(false);
@@ -23,7 +25,7 @@ const TaskForm = ({ task, onSave }) => {
     useEffect(() => {
         if (task) {
             setTitle(task.label);
-            setDate(task.date);
+            setDate(new Date(task.date));
             setDescription(task.description);
             setIsImportant(task.important);
             setIsCompleted(task.done);
@@ -41,7 +43,7 @@ const TaskForm = ({ task, onSave }) => {
         const newItem = {
             id: task?.id || newId,
             label: title,
-            date,
+            date: dateUtil.formattedDate(date),
             description,
             important: isImportant,
             done: isCompleted
@@ -53,44 +55,46 @@ const TaskForm = ({ task, onSave }) => {
 
     return (
         <form className="task-form" onSubmit={handleSubmit}>
-            <label>
-                Title
-                <input
-                    type="text"
-                    placeholder="e.g, study for the test"
+            <label className="task-form__label">Title</label>
+            <input
+                type="text"
+                placeholder="e.g, study for the test"
+                required
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                style={{
+                    backgroundColor: theme.secondaryBackgroundColor,
+                    color: theme.secondaryColor
+                }}
+            />
+
+            <label className="task-form__label">Date</label>
+            <div
+                className="data-picker"
+                style={{
+                    backgroundColor: theme.secondaryBackgroundColor,
+                    color: theme.secondaryColor
+                }}>
+                <DatePicker
+                    shouldCloseOnSelect={true}
                     required
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                    style={{
-                        backgroundColor: theme.secondaryBackgroundColor,
-                        color: theme.secondaryColor
-                    }}
+                    selected={date}
+                    onChange={(date) => setDate(date)}
+                    dateFormat="yyyy/MM/dd"
+                    wrapperClassName="picker-wrapper"
                 />
-            </label>
-            <label>
-                Date
-                <input
-                    type="date"
-                    required
-                    value={date}
-                    onChange={(e) => setDate(e.target.value)}
-                    style={{
-                        backgroundColor: theme.secondaryBackgroundColor,
-                        color: theme.secondaryColor
-                    }}
-                />
-            </label>
-            <label>
-                Description (optional)
-                <textarea
-                    placeholder="e.g, study for the test"
-                    style={{
-                        backgroundColor: theme.secondaryBackgroundColor,
-                        color: theme.secondaryColor
-                    }}
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}></textarea>
-            </label>
+            </div>
+
+            <label className="task-form__label">Description (optional)</label>
+            <textarea
+                placeholder="e.g, study for the test"
+                style={{
+                    backgroundColor: theme.secondaryBackgroundColor,
+                    color: theme.secondaryColor
+                }}
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}></textarea>
+
             <label className="task-form__mark">
                 <input
                     type="checkbox"
