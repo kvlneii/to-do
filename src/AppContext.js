@@ -11,6 +11,7 @@ export const useAppContext = () => {
 
 const AppProvider = ({ children }) => {
     const [activeMobileMenu, setActiveMobileMenu] = useState(false);
+    const [activeMobileSettings, setActiveMobileSettings] = useState(false);
     const [activeModalId, setActiveModalId] = useState();
     const [searchedTerm, setSearchedTerm] = useState('');
     const [filter, setFilter] = useState(statusIds.ALL);
@@ -20,6 +21,8 @@ const AppProvider = ({ children }) => {
     const contextValue = {
         activeMobileMenu,
         setActiveMobileMenu,
+        activeMobileSettings,
+        setActiveMobileSettings,
         activeModalId,
         setActiveModalId,
         searchedTerm,

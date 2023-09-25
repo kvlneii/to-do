@@ -10,11 +10,6 @@ const options = {
 const getTasks = async () => {
     try {
         const response = await axios.get(_apiUrl);
-
-        if (response.status !== 200) {
-            throw new Error(`Could not fetch ${_apiUrl}, received ${response.status}`);
-        }
-
         return response.data;
     } catch (error) {
         console.error('Error fetching data from API:', error);
@@ -25,11 +20,6 @@ const getTasks = async () => {
 const getTaskById = async (taskId) => {
     try {
         const response = await axios.get(`${_apiUrl}/${taskId}`);
-
-        if (response.status !== 200) {
-            throw new Error(`Could not fetch task with ID ${taskId}`);
-        }
-
         return response.data;
     } catch (error) {
         console.error(`Error fetching task with ID ${taskId}:`, error);

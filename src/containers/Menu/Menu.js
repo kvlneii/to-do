@@ -14,9 +14,11 @@ const Menu = () => {
     const { setActiveModalId, activeMobileMenu, setActiveMobileMenu } = useAppContext();
 
     return (
-        <div
-            className={`wrapper-mobile ${activeMobileMenu ? ' wrapper-mobile--active' : ''}`}
-            onClick={() => setActiveMobileMenu(false)}>
+        <>
+            <div
+                className={`wrapper-mobile ${activeMobileMenu ? ' wrapper-mobile--active' : ''}`}
+                onClick={() => setActiveMobileMenu(false)}></div>
+
             <div
                 className={`wrapper-menu ${activeMobileMenu ? ' wrapper-menu--active' : ''}`}
                 style={{
@@ -34,7 +36,7 @@ const Menu = () => {
                     <ItemStatusFilter />
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 

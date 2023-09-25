@@ -19,10 +19,22 @@
 
     &__icon {
         display: none;
-        margin-right: 1rem;
         padding: 5px;
-        @media (max-width: 1024px) {
-            display: block;
+        cursor: pointer;
+
+        &--settings {
+            margin: 5px;
+            margin-right: 0;
+            @media (max-width: 750px) {
+                display: block;
+            }
+        }
+
+        &--menu {
+            margin-right: 1rem;
+            @media (max-width: 1024px) {
+                display: block;
+            }
         }
     }
 
@@ -33,17 +45,27 @@
     }
 
     &__btn {
+        @media (max-width: 750px) {
+            margin-right: 5px;
+        }
+
         &--desktop {
-            @media (max-width: 440px) {
+            @media (max-width: 540px) {
                 display: none;
             }
         }
 
         &--mobile {
             display: none;
-            @media (max-width: 440px) {
+            @media (max-width: 540px) {
                 display: block;
             }
         }
+    }
+
+    &__actions {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
     }
 }
