@@ -1,3 +1,5 @@
+@use '../../../consts/scss/colors' as colors;
+
 .todo {
     &-wrapper {
         width: 100%;
@@ -55,7 +57,7 @@
             width: 100%;
             padding-top: 1rem;
             margin-top: 1.2rem;
-            border-top: 2px dashed #8a9eb7;
+            border-top: 2px dashed colors.$root__grey;
         }
     }
 }
@@ -64,8 +66,8 @@
     display: flex;
     align-items: center;
     &__complete {
-        background-color: #fde68a;
-        color: #95400e;
+        background-color: colors.$btn__bg--yellow;
+        color: colors.$btn--dark-red;
         padding: 0.4rem 0.75rem;
         font-weight: 500;
         font-family: inherit;
@@ -79,8 +81,8 @@
         }
 
         &--done {
-            background-color: #a7f3d0;
-            color: #1f765e;
+            background-color: colors.$btn__bg--green;
+            color: colors.$btn--green;
         }
     }
 

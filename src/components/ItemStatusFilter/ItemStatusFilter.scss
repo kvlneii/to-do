@@ -1,3 +1,5 @@
+@use '../../consts/scss/colors' as colors;
+
 .navigation {
     list-style: none;
     padding: 0;
@@ -16,22 +18,22 @@
 
         &--active {
             background-color: rgb(237, 233, 254);
-            color: #f43f5e;
-            border-right: 4px solid #f43f5e;
+            color: colors.$root__icon--important;
+            border-right: 4px solid colors.$root__icon--important;
         }
 
         &--dark-active {
             background-color: rgba(51, 65, 85, 0.2);
-            color: #e2e8f0;
-            border-right: 4px solid #e2e8f0;
+            color: colors.$root__primary--light;
+            border-right: 4px solid colors.$root__primary--light;
         }
-        
+
         &:hover {
-            color: #f43f5e;
+            color: colors.$root__icon--important;
         }
-        
+
         &--dark-mode:hover {
-            color: #e2e8f0;
+            color: colors.$root__primary--light;
         }
     }
 }

@@ -1,3 +1,5 @@
+@use '../../consts/scss/colors' as colors;
+
 .sort-tasks {
     display: flex;
     align-items: center;
@@ -38,6 +40,6 @@
 
     &:focus,
     &:active {
-        border-color: #5b21b6 !important;
+        border-color: colors.$root__purple !important;
     }
 }

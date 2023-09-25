@@ -1,3 +1,5 @@
+@use '../../consts/scss/colors' as colors;
+
 .search-panel {
     display: flex;
     justify-content: center;
@@ -17,7 +19,7 @@
         width: 11rem;
     }
 
-    &__input{
+    &__input {
         border-radius: 0.5rem;
         border: solid 2.5px transparent;
         padding: 0.75rem;
@@ -30,16 +32,16 @@
 
         &:hover,
         &:focus,
-        &:active{
-            border-color: #5b21b6 !important;
+        &:active {
+            border-color: colors.$root__purple !important;
         }
 
-        &::placeholder{
+        &::placeholder {
             color: inherit;
         }
     }
 
-    &__icon{
+    &__icon {
         display: block;
         width: 1.25rem;
         height: 1.25rem;

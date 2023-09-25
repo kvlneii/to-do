@@ -1,21 +1,23 @@
-.progress-bar{
-    &__text{
+@use '../../consts/scss/colors' as colors;
+
+.progress-bar {
+    &__text {
         display: flex;
         align-items: center;
         justify-content: space-between;
         margin-bottom: 0.6rem;
     }
 
-    &__filler{
+    &__filler {
         height: 10px;
         width: 100%;
         border-radius: 50px;
 
-        &-color{
+        &-color {
             height: 100%;
-            background-color: #7c3aed;
+            background-color: colors.$root__purple--light;
             border-radius: inherit;
-            text-align: right; 
+            text-align: right;
         }
     }
 }

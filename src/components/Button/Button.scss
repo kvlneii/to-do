@@ -1,5 +1,7 @@
+@use '../../consts/scss/colors' as colors;
+
 .btn {
-    color: #f3eef9;
+    color: colors.$btn__color;
     display: block;
     border-radius: 0.5rem;
     padding: 0.8rem 1.5rem;
