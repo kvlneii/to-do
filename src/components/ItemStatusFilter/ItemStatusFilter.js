@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+
 import { ThemeContext } from '../../ThemeContext';
 import { useAppContext } from '../../AppContext';
 
@@ -8,20 +9,25 @@ import './ItemStatusFilter.scss';
 
 const ItemStatusFilter = () => {
     const { isDark } = useContext(ThemeContext);
-    const { filter, setFilter } = useAppContext();
+    const { filter, setFilter, setActiveMobileMenu } = useAppContext();
+
+    const handleClick = (name) => {
+        setFilter(name);
+        setActiveMobileMenu(false);
+    };
 
     const statuses = allStatuses.map(({ name, label }) => {
         const isActive = filter === name;
         let statusClassNames = 'navigation__item';
-        statusClassNames += isDark ? ' navigation__item--darkMode' : '';
+        statusClassNames += isDark ? ' navigation__item--dark-mode' : '';
         statusClassNames += isActive
             ? isDark
-                ? ' navigation__item--darkModeActive'
+                ? ' navigation__item--dark-active'
                 : ' navigation__item--active'
             : '';
 
         return (
-            <li className={statusClassNames} key={name} onClick={() => setFilter(name)}>
+            <li className={statusClassNames} key={name} onClick={() => handleClick(name)}>
                 {label}
             </li>
         );

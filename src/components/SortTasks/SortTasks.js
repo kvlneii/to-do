@@ -4,9 +4,9 @@ import { ThemeContext } from '../../ThemeContext';
 import { useAppContext } from '../../AppContext';
 
 import { allStatuses, allSortOptions } from '../../consts';
+import { todoUtil } from '../../utils';
 
 import './SortTasks.scss';
-import { todoUtil } from '../../utils';
 
 const SortTasks = () => {
     const [title, setTitle] = useState();
@@ -44,7 +44,7 @@ const SortTasks = () => {
                 {title} ({todos.length} {todos.length === 1 ? 'task' : 'tasks'})
             </h1>
             <select
-                className="sort-tasks__options"
+                className="sort-tasks__options options-sort"
                 style={{
                     backgroundColor: theme.secondaryBackgroundColor,
                     color: theme.secondaryColor

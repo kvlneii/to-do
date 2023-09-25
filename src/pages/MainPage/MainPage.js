@@ -4,10 +4,11 @@ import { useAppContext } from '../../AppContext';
 import { ThemeContext } from '../../ThemeContext';
 
 import { modalIds } from '../../consts';
-import { tasksService } from '../../services';
+import { todoService } from '../../services';
 
 import { Modal } from '../../components';
 import { TaskForm, Dashboard, Menu, Settings } from '../../containers';
+
 import './MainPage.scss';
 
 const MainPage = () => {
@@ -17,26 +18,32 @@ const MainPage = () => {
 
     const [editedTask, setEditedTask] = useState(null);
 
-    useEffect(async () => {
-        const tasks = await fetchData();
-        setTodoData(tasks);
-    }, []);
-
     const fetchData = async () => {
         try {
-            const tasks = await tasksService.getTasks();
-            return tasks.reverse();
+            const tasks = await todoService.getTasks();
+            setTodoData(tasks.reverse());
         } catch (error) {
             console.error('Error loading tasks:', error);
         }
     };
 
+    useEffect(() => {
+        fetchData();
+    }, []);
+
     const createTask = async (newItem) => {
-        await tasksService.addTask(newItem);
+        await todoService.addTask(newItem);
+        fetchData();
     };
 
     const editTask = async (updatedItem) => {
-        await tasksService.editTask(updatedItem.id, updatedItem);
+        await todoService.editTask(updatedItem.id, updatedItem);
+        fetchData();
+    };
+
+    const deleteTask = async (taskId) => {
+        await todoService.deleteTask(taskId);
+        fetchData();
     };
 
     return (
@@ -48,7 +55,7 @@ const MainPage = () => {
                     color: theme.secondaryColor
                 }}>
                 <Menu />
-                <Dashboard setEditedTask={setEditedTask} />
+                <Dashboard setEditedTask={setEditedTask} onDelete={deleteTask} onEdit={editTask} />
                 <Settings />
 
                 {activeModalId === modalIds.CREATE_TASK_MODAL && (

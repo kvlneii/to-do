@@ -11,12 +11,26 @@
         margin-bottom: 0.5rem;
     }
 
-    &__search{
+    &__search {
         display: flex;
         align-items: center;
         justify-content: center;
-        &__icon{
-            display: none;
+    }
+
+    &__icon {
+        display: none;
+        padding: 5px;
+        cursor: pointer;
+
+        &--settings {
+            margin: 5px;
+            margin-right: 0;
+            @media (max-width: 750px) {
+                display: block;
+            }
+        }
+
+        &--menu {
             margin-right: 1rem;
             @media (max-width: 1024px) {
                 display: block;
@@ -24,24 +38,34 @@
         }
     }
 
-    &__date{
+    &__date {
         @media (max-width: 890px) {
             display: none;
         }
     }
 
-    &__btn{
-        &--desktop{
-            @media (max-width: 440px) {
+    &__btn {
+        @media (max-width: 750px) {
+            margin-right: 5px;
+        }
+
+        &--desktop {
+            @media (max-width: 540px) {
                 display: none;
             }
         }
 
-        &--mobile{
+        &--mobile {
             display: none;
-            @media (max-width: 440px) {
+            @media (max-width: 540px) {
                 display: block;
             }
         }
+    }
+
+    &__actions {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
     }
 }

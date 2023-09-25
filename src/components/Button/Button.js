@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import PropTypes from 'prop-types';
 
 import { ThemeContext } from '../../ThemeContext';
+
 import './Button.scss';
 
 const Button = ({ label, onClick }) => {

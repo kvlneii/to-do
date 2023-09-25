@@ -5,28 +5,21 @@ import { useAppContext } from '../../AppContext';
 
 import { propertyNames, modalIds } from '../../consts';
 import { todoUtil } from '../../utils';
-import { tasksService } from '../../services';
 
 import TodoListItem from './TodoListItem/TodoListItem';
+
 import './TodoList.scss';
 
-const TodoList = ({ setEditedTask }) => {
-    const { setTodoData, todoData, searchedTerm, filter, sortBy, setActiveModalId } =
-        useAppContext();
+const TodoList = ({ setEditedTask, onDelete, onEdit }) => {
+    const { todoData, searchedTerm, filter, sortBy, setActiveModalId } = useAppContext();
 
     const todos = useMemo(() => {
         return todoUtil.getVisibleItems(todoData, searchedTerm, sortBy, filter);
     }, [todoData, searchedTerm, sortBy, filter]);
 
-    const handleDelete = async (id) => {
-        setTodoData(todoUtil.deleteItem(todoData, id));
-        await tasksService.deleteTask(id);
-    };
-
     const handleToggleProperty = async (id, propName) => {
         const newItem = todoUtil.toggleProperty(todoData, id, propName);
-        setTodoData(todoUtil.updateTodo(todoData, newItem));
-        await tasksService.editTask(id, newItem);
+        onEdit(newItem);
     };
 
     const handleEdit = (item) => {
@@ -41,7 +34,7 @@ const TodoList = ({ setEditedTask }) => {
             <li key={id} className="todo-list__item">
                 <TodoListItem
                     {...itemProps}
-                    onDeleted={() => handleDelete(id)}
+                    onDeleted={() => onDelete(id)}
                     onToggleImportant={() => handleToggleProperty(id, propertyNames.IMPORTANT)}
                     onToggleComplete={() => handleToggleProperty(id, propertyNames.DONE)}
                     onEdit={() => handleEdit(item)}
@@ -54,7 +47,9 @@ const TodoList = ({ setEditedTask }) => {
 };
 
 TodoList.propTypes = {
-    setEditedTask: PropTypes.func.isRequired
+    setEditedTask: PropTypes.func.isRequired,
+    onDelete: PropTypes.func.isRequired,
+    onEdit: PropTypes.func.isRequired
 };
 
 export default TodoList;
