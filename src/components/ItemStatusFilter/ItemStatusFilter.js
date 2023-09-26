@@ -1,25 +1,33 @@
-import React, { useContext } from 'react';
-import './ItemStatusFilter.css';
-import { ThemeContext } from '../../theme-context';
-import { allStatuses } from '../../filterOptions';
+import { useContext } from 'react';
+
+import { ThemeContext } from '../../ThemeContext';
 import { useAppContext } from '../../AppContext';
 
+import { allStatuses } from '../../consts';
+
+import './ItemStatusFilter.scss';
+
 const ItemStatusFilter = () => {
-    const { dark } = useContext(ThemeContext);
-    const { filter, setFilter } = useAppContext();
+    const { isDark } = useContext(ThemeContext);
+    const { filter, setFilter, setActiveMobileMenu } = useAppContext();
+
+    const handleClick = (name) => {
+        setFilter(name);
+        setActiveMobileMenu(false);
+    };
 
     const statuses = allStatuses.map(({ name, label }) => {
         const isActive = filter === name;
         let statusClassNames = 'navigation__item';
-        statusClassNames += dark ? ' navigation__item--darkMode' : '';
+        statusClassNames += isDark ? ' navigation__item--dark-mode' : '';
         statusClassNames += isActive
-            ? dark
-                ? ' navigation__item--darkModeActive'
+            ? isDark
+                ? ' navigation__item--dark-active'
                 : ' navigation__item--active'
             : '';
 
         return (
-            <li className={statusClassNames} key={name} onClick={() => setFilter(name)}>
+            <li className={statusClassNames} key={name} onClick={() => handleClick(name)}>
                 {label}
             </li>
         );

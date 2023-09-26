@@ -1,0 +1,25 @@
+import PropTypes from 'prop-types';
+
+import { Header, TodoList, SortTasks } from '../../containers';
+
+import './Dashboard.scss';
+
+const Dashboard = ({ setEditedTask, onDelete, onEdit }) => {
+    return (
+        <div className="wrapper">
+            <div className="container">
+                <Header />
+                <SortTasks />
+                <TodoList setEditedTask={setEditedTask} onDelete={onDelete} onEdit={onEdit} />
+            </div>
+        </div>
+    );
+};
+
+Dashboard.propTypes = {
+    setEditedTask: PropTypes.func.isRequired,
+    onDelete: PropTypes.func.isRequired,
+    onEdit: PropTypes.func.isRequired
+};
+
+export default Dashboard;

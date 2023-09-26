@@ -1,0 +1,23 @@
+@use '../../consts/scss/colors' as colors;
+
+.progress-bar {
+    &__text {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 0.6rem;
+    }
+
+    &__filler {
+        height: 10px;
+        width: 100%;
+        border-radius: 50px;
+
+        &-color {
+            height: 100%;
+            background-color: colors.$purple--03;
+            border-radius: inherit;
+            text-align: right;
+        }
+    }
+}

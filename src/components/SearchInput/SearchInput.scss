@@ -1,0 +1,56 @@
+@use '../../consts/scss/colors' as colors;
+
+.search-panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 18rem;
+    position: relative;
+
+    @media (max-width: 590px) {
+        width: 14rem;
+    }
+
+    @media (max-width: 490px) {
+        width: 12rem;
+    }
+
+    @media (max-width: 390px) {
+        width: 11rem;
+    }
+
+    @media (max-width: 370px) {
+        width: 9rem;
+    }
+
+    &__input {
+        border-radius: 0.5rem;
+        border: solid 2.5px transparent;
+        padding: 0.75rem;
+        width: 100%;
+        font-family: inherit;
+        font-size: 100%;
+        font-weight: inherit;
+        line-height: inherit;
+        outline: none;
+
+        &:hover,
+        &:focus,
+        &:active {
+            border-color: colors.$purple__primary !important;
+        }
+
+        &::placeholder {
+            color: inherit;
+        }
+    }
+
+    &__icon {
+        display: block;
+        width: 1.25rem;
+        height: 1.25rem;
+        cursor: pointer;
+        right: 1rem;
+        position: absolute;
+    }
+}

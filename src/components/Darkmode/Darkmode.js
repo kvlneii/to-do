@@ -1,16 +1,33 @@
-import React, { useContext } from 'react';
-import { ThemeContext } from '../../theme-context';
-import './Darkmode.css';
+import { useContext } from 'react';
+
+import { ThemeContext } from '../../ThemeContext';
+
+import './Darkmode.scss';
 
 const Darkmode = () => {
-    const { theme, toggle } = useContext(ThemeContext);
+    const { theme, toggle, isDark } = useContext(ThemeContext);
 
     return (
         <div className="switcher">
-            <span className="switcher__text">Darkmode</span>
+            <label
+                htmlFor="darkmode"
+                className="switcher__text"
+                style={{
+                    color: theme.primaryColor
+                }}>
+                {isDark ? 'Light' : 'Dark'} <span className="switcher__span"> Mode</span>
+            </label>
             <label className="switcher__button">
-                <input type="checkbox" onClick={toggle} />
-                <span className="slider" style={{ backgroundColor: theme.themeBackground }}></span>
+                <input
+                    className="switcher__input"
+                    id="darkmode"
+                    type="checkbox"
+                    onChange={toggle}
+                    checked={isDark}
+                />
+                <span
+                    className="switcher__slider"
+                    style={{ backgroundColor: theme.themeBackground }}></span>
             </label>
         </div>
     );

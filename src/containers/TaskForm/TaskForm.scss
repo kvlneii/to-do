@@ -1,0 +1,115 @@
+@use '../../consts/scss/colors' as colors;
+
+.task-form {
+    display: flex;
+    flex-direction: column;
+    width: 30rem;
+    border-radius: 0.5rem;
+    margin-bottom: 13px;
+
+    @media (max-width: 800px) {
+        width: 25rem;
+    }
+
+    @media (max-width: 580px) {
+        width: 21rem;
+    }
+
+    @media (max-width: 480px) {
+        width: 17rem;
+    }
+
+    @media (max-width: 370px) {
+        width: 15rem;
+    }
+
+    &__label {
+        margin-bottom: 0.3rem;
+        font-size: 1rem;
+        line-height: 1.5rem;
+
+        @media (max-width: 460px) {
+            font-size: 0.9rem;
+        }
+    }
+
+    input,
+    textarea {
+        box-sizing: border-box;
+        border-radius: 0.5rem;
+        border-width: 2px;
+        margin-bottom: 1rem;
+        border: solid 2.5px transparent;
+        padding: 0.75rem;
+        width: 100%;
+        font-family: inherit;
+        font-size: 100%;
+        font-weight: inherit;
+        line-height: inherit;
+        outline: none;
+
+        @media (max-width: 420px) {
+            margin-bottom: 0.7rem;
+        }
+
+        @media (max-width: 320px) {
+            margin-bottom: 0.5rem;
+        }
+
+        &::placeholder {
+            color: inherit;
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+            border-color: colors.$purple__primary;
+        }
+    }
+
+    textarea {
+        resize: none;
+        height: 90px;
+
+        @media (max-width: 800px) {
+            height: 70px;
+        }
+    }
+
+    &__mark {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        cursor: pointer;
+
+        input {
+            display: block;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            margin-right: 5px;
+            accent-color: colors.$purple__primary;
+        }
+
+        @media (max-width: 800px) {
+            margin-bottom: 9px;
+        }
+    }
+
+    &__data-picker {
+        border-radius: 0.5rem;
+        margin-bottom: 1rem;
+
+        .react-datepicker__month {
+            margin: 0;
+            background-color: colors.$white__primary;
+        }
+
+        &--dark {
+            .react-datepicker__month {
+                margin: 0;
+                background-color: colors.$purple__bg;
+            }
+        }
+    }
+}

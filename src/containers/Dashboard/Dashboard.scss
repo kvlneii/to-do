@@ -1,0 +1,14 @@
+.wrapper {
+    width: 100%;
+    overflow-y: auto;
+    max-height: 100vh;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.container {
+    padding: 1.25rem;
+    box-sizing: border-box;
+}
