@@ -6,6 +6,8 @@ import { useAppContext } from '../../AppContext';
 import { allStatuses, allSortOptions } from '../../consts';
 import { todoUtil } from '../../utils';
 
+import { Dropdown } from '../../components';
+
 import './SortTasks.scss';
 
 const SortTasks = () => {
@@ -25,37 +27,30 @@ const SortTasks = () => {
         }
     }, [filter]);
 
-    const handleSortChange = (event) => {
-        const selectedSortOption = event.target.value;
+    const handleSortClick = (selectedSortOption) => {
         setSortBy(selectedSortOption);
     };
 
-    const options = allSortOptions.map(({ name, label }) => {
-        return (
-            <option value={name} key={name}>
-                {label}
-            </option>
-        );
-    });
+    const transformSortOptions = (options) => {
+        return options.map((option) => {
+            return {
+                id: option.name,
+                label: option.label
+            };
+        });
+    };
 
     return (
         <div className="sort-tasks">
             <h1 className="sort-tasks__title" style={{ color: theme.primaryColor }}>
                 {title} ({todos.length} {todos.length === 1 ? 'task' : 'tasks'})
             </h1>
-            <select
-                className="sort-tasks__options options-sort"
-                style={{
-                    backgroundColor: theme.secondaryBackgroundColor,
-                    color: theme.secondaryColor
-                }}
-                onChange={handleSortChange}
-                value={sortBy}>
-                <option value="disabledOption" disabled hidden>
-                    Sorted by
-                </option>
-                {options}
-            </select>
+
+            <Dropdown
+                classNames="sort-tasks__options"
+                onOptionSelected={(selectedSortOption) => handleSortClick(selectedSortOption)}
+                options={transformSortOptions(allSortOptions)}
+            />
         </div>
     );
 };

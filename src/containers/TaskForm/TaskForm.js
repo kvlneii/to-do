@@ -1,19 +1,17 @@
 import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import DatePicker from 'react-datepicker';
 
 import { ThemeContext } from '../../ThemeContext';
 import { useAppContext } from '../../AppContext';
 
 import { todoUtil, dateUtil } from '../../utils';
 
-import { Button } from '../../components';
+import { Button, DatePicker, CheckMark } from '../../components';
 
 import './TaskForm.scss';
-import 'react-datepicker/dist/react-datepicker.css';
 
 const TaskForm = ({ task, onSave }) => {
-    const { theme } = useContext(ThemeContext);
+    const { theme, isDark } = useContext(ThemeContext);
     const { setActiveModalId, todoData } = useAppContext();
 
     const [title, setTitle] = useState('');
@@ -69,21 +67,13 @@ const TaskForm = ({ task, onSave }) => {
             />
 
             <label className="task-form__label">Date</label>
-            <div
-                className="data-picker"
-                style={{
-                    backgroundColor: theme.secondaryBackgroundColor,
-                    color: theme.secondaryColor
-                }}>
-                <DatePicker
-                    shouldCloseOnSelect={true}
-                    required
-                    selected={date}
-                    onChange={(date) => setDate(date)}
-                    dateFormat="yyyy/MM/dd"
-                    wrapperClassName="picker-wrapper"
-                />
-            </div>
+            <DatePicker
+                date={date}
+                onChange={(date) => setDate(date)}
+                classNames={`task-form__data-picker ${
+                    isDark ? ' task-form__data-picker--dark' : ''
+                }`}
+            />
 
             <label className="task-form__label">Description (optional)</label>
             <textarea
@@ -95,22 +85,19 @@ const TaskForm = ({ task, onSave }) => {
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}></textarea>
 
-            <label className="task-form__mark">
-                <input
-                    type="checkbox"
-                    checked={isImportant}
-                    onChange={() => setIsImportant(!isImportant)}
-                />
-                <span>Mark as important</span>
-            </label>
-            <label className="task-form__mark">
-                <input
-                    type="checkbox"
-                    checked={isCompleted}
-                    onChange={() => setIsCompleted(!isCompleted)}
-                />
-                <span>Mark as completed</span>
-            </label>
+            <CheckMark
+                checked={isImportant}
+                onChange={() => setIsImportant(!isImportant)}
+                className="task-form__mark"
+                label="Mark as important"
+            />
+
+            <CheckMark
+                checked={isCompleted}
+                onChange={() => setIsCompleted(!isCompleted)}
+                className="task-form__mark"
+                label="Mark as completed"
+            />
 
             <Button
                 label={task ? 'Edit task' : 'Add a task'}

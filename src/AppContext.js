@@ -15,7 +15,7 @@ const AppProvider = ({ children }) => {
     const [activeModalId, setActiveModalId] = useState();
     const [searchedTerm, setSearchedTerm] = useState('');
     const [filter, setFilter] = useState(statusIds.ALL);
-    const [sortBy, setSortBy] = useState('disabledOption');
+    const [sortBy, setSortBy] = useState(null);
     const [todoData, setTodoData] = useState([]);
 
     const contextValue = {

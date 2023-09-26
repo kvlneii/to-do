@@ -1,52 +1,52 @@
 {
-    "tasks": [
-        {
-            "id": 0,
-            "label": "Task 6 ",
-            "date": "2023-09-25",
-            "description": "This is the description for this task",
-            "important": true,
-            "done": false
-        },
-        {
-            "id": 1,
-            "label": "Task 5",
-            "date": "2023-09-26",
-            "description": "This is the description for this task",
-            "important": true,
-            "done": false
-        },
-        {
-            "id": 2,
-            "label": "Task 4",
-            "date": "2023-09-27",
-            "description": "This is the description for this task",
-            "important": false,
-            "done": true
-        },
-        {
-            "id": 3,
-            "label": "Task 3",
-            "date": "2023-09-28",
-            "description": "This is the description for this task",
-            "important": false,
-            "done": true
-        },
-        {
-            "id": 4,
-            "label": "Task 2",
-            "date": "2023-10-01",
-            "description": "This is the description for this task",
-            "important": false,
-            "done": false
-        },
-        {
-            "id": 5,
-            "label": "Task 1",
-            "date": "2023-10-06",
-            "description": "This is the description for this task",
-            "important": true,
-            "done": true
-        }
-    ]
+  "tasks": [
+    {
+      "id": 0,
+      "label": "Job Application",
+      "date": "2023-09-25",
+      "description": "Apply for the marketing manager position",
+      "important": true,
+      "done": true
+    },
+    {
+      "id": 1,
+      "label": "Movie Night",
+      "date": "2023-09-26",
+      "description": "Plan a movie night with friends and select the films to watch",
+      "important": false,
+      "done": false
+    },
+    {
+      "id": 2,
+      "label": "House Cleaning",
+      "date": "2023-09-27",
+      "description": "Clean the bathroom and kitchen",
+      "important": false,
+      "done": true
+    },
+    {
+      "id": 3,
+      "label": "Budget Planning",
+      "date": "2023-09-28",
+      "description": "Create a budget for the upcoming month",
+      "important": true,
+      "done": true
+    },
+    {
+      "id": 4,
+      "label": "Study for Exam",
+      "date": "2023-10-01",
+      "description": "Review chapters 1-5 for the upcoming history exam",
+      "important": false,
+      "done": true
+    },
+    {
+      "id": 5,
+      "label": "Workout Routine",
+      "date": "2023-10-05",
+      "description": "Complete a 30-minute cardio workout",
+      "important": true,
+      "done": false
+    }
+  ]
 }

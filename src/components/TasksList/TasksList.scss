@@ -1,3 +1,5 @@
+@use '../../consts/scss/colors' as colors;
+
 .todo-section {
     &__title {
         display: block;
@@ -31,7 +33,7 @@
         }
 
         &--important {
-            color: #f43f5e;
+            color: colors.$red--important;
         }
     }
 }

@@ -1,0 +1,71 @@
+@use '../../consts/scss/colors' as colors;
+
+.picker-wrapper {
+    width: 100%;
+}
+
+.react-datepicker__header {
+    background-color: colors.$purple__primary !important;
+}
+
+.react-datepicker__current-month,
+.react-datepicker-time__header,
+.react-datepicker-year-header {
+    color: colors.$white__primary !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+        'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+.react-datepicker__day-names > div {
+    color: colors.$white__primary !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+        'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+.react-datepicker__day--selected {
+    background-color: colors.$purple__primary !important;
+    color: colors.$white__primary !important;
+}
+
+.react-datepicker__day:hover {
+    background-color: colors.$purple__primary !important;
+    color: colors.$white__primary !important;
+}
+
+.react-datepicker-popper[data-placement^='top'] .react-datepicker__triangle::before,
+.react-datepicker-popper[data-placement^='bottom'] .react-datepicker__triangle::before,
+.react-datepicker-popper[data-placement^='top'] .react-datepicker__triangle::after,
+.react-datepicker-popper[data-placement^='bottom'] .react-datepicker__triangle::after {
+    height: 0 !important;
+    width: 0 !important;
+    border-width: 0px !important;
+}
+
+.react-datepicker__input-container {
+    margin-bottom: -1rem;
+    input {
+        box-sizing: border-box;
+        border-radius: 0.5rem;
+        border-width: 2px;
+        border: solid 2.5px transparent;
+        padding: 0.75rem;
+        width: 100%;
+        font-family: inherit;
+        font-size: 100%;
+        font-weight: inherit;
+        line-height: inherit;
+        outline: none;
+        color: inherit;
+        background-color: inherit;
+
+        &::placeholder {
+            color: inherit;
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+            border-color: colors.$purple__primary;
+        }
+    }
+}
