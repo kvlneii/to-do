@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { Header, TodoList } from '../../containers';
-import { SortTasks } from '../../components';
+import { Header, TodoList, SortTasks } from '../../containers';
 
 import './Dashboard.scss';
 

@@ -6,7 +6,7 @@ import { useAppContext } from '../../AppContext';
 
 import { todoUtil, dateUtil } from '../../utils';
 
-import { Button, PickerDate } from '../../components';
+import { Button, PickerDate, CheckMark } from '../../components';
 
 import './TaskForm.scss';
 
@@ -85,23 +85,19 @@ const TaskForm = ({ task, onSave }) => {
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}></textarea>
 
-            <label className="task-form__mark">
-                <input
-                    type="checkbox"
-                    checked={isImportant}
-                    onChange={() => setIsImportant(!isImportant)}
-                />
-                <span>Mark as important</span>
-            </label>
+            <CheckMark
+                checked={isImportant}
+                onChange={() => setIsImportant(!isImportant)}
+                className="task-form__mark"
+                label="Mark as important"
+            />
 
-            <label className="task-form__mark">
-                <input
-                    type="checkbox"
-                    checked={isCompleted}
-                    onChange={() => setIsCompleted(!isCompleted)}
-                />
-                <span>Mark as completed</span>
-            </label>
+            <CheckMark
+                checked={isCompleted}
+                onChange={() => setIsCompleted(!isCompleted)}
+                className="task-form__mark"
+                label="Mark as completed"
+            />
 
             <Button
                 label={task ? 'Edit task' : 'Add a task'}

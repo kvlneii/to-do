@@ -1,0 +1,22 @@
+@use '../../consts/scss/colors' as colors;
+
+.sort-tasks {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &__title {
+        font-size: 1.5rem;
+        line-height: 2rem;
+        font-weight: 500;
+        margin: 2rem 0;
+
+        @media (max-width: 590px) {
+            font-size: 1.3rem;
+        }
+    }
+
+    &__options {
+        margin-left: auto;
+    }
+}

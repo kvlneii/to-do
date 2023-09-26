@@ -19,6 +19,10 @@
         width: 11rem;
     }
 
+    @media (max-width: 370px) {
+        width: 9rem;
+    }
+
     &__input {
         border-radius: 0.5rem;
         border: solid 2.5px transparent;
@@ -33,7 +37,7 @@
         &:hover,
         &:focus,
         &:active {
-            border-color: colors.$root__purple !important;
+            border-color: colors.$purple__primary !important;
         }
 
         &::placeholder {

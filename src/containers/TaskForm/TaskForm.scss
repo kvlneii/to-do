@@ -63,7 +63,7 @@
         &:hover,
         &:focus,
         &:active {
-            border-color: colors.$root__purple;
+            border-color: colors.$purple__primary;
         }
     }
 
@@ -88,7 +88,7 @@
             height: 15px;
             border-radius: 50%;
             margin-right: 5px;
-            accent-color: colors.$root__purple;
+            accent-color: colors.$purple__primary;
         }
 
         @media (max-width: 800px) {
@@ -102,13 +102,13 @@
 
         .react-datepicker__month {
             margin: 0;
-            background-color: colors.$root__primary--light;
+            background-color: colors.$white__primary;
         }
 
         &--dark {
             .react-datepicker__month {
                 margin: 0;
-                background-color: colors.$root__data-picker__bg--dark;
+                background-color: colors.$purple__bg;
             }
         }
     }
