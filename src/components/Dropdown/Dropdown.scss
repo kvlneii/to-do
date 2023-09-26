@@ -48,6 +48,8 @@
         right: 0;
         opacity: 0;
         visibility: hidden;
+        max-height: 218px;
+        overflow-y: auto;
         transform: translateX(20px);
         transition: all 0.3s ease;
 
@@ -60,6 +62,11 @@
     }
 
     &__item {
+        max-width: 15rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
         text-wrap: nowrap;
         box-sizing: border-box;
         position: relative;

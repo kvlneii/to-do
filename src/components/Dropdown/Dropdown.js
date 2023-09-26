@@ -1,12 +1,13 @@
 import React, { useContext, useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
-import { allSortOptions } from '../../consts';
 import { ThemeContext } from '../../ThemeContext';
 
-import './SortMenu.scss';
+import { useOnClickOutside } from '../../hooks';
 
-const SortMenu = ({ classNames, onClicked }) => {
+import './Dropdown.scss';
+
+const Dropdown = ({ classNames, onOptionSelected, selectedOption, options }) => {
     const [isOpen, setIsOpen] = React.useState(false);
     const [selectedLabel, setSelectedLabel] = useState('Sorted by');
 
@@ -14,33 +15,29 @@ const SortMenu = ({ classNames, onClicked }) => {
     let menuRef = useRef();
 
     useEffect(() => {
-        function handleClickOutside(event) {
-            if (menuRef.current && !menuRef.current.contains(event.target)) {
-                setIsOpen(false);
-            }
-        }
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, [menuRef]);
+        if (selectedOption) setSelectedLabel(selectedOption);
+    }, []);
+
+    useOnClickOutside(menuRef, () => {
+        setIsOpen(false);
+    });
 
     const handleOpen = () => {
         setIsOpen((prevIsOpen) => !prevIsOpen);
     };
 
-    const handleSortClick = (name, label) => {
+    const handleSortClick = (id, label) => {
         setSelectedLabel(label);
-        onClicked(name);
+        onOptionSelected(id);
         setIsOpen(false);
     };
 
-    const options = allSortOptions.map(({ name, label }) => {
+    const items = options.map(({ id, label }) => {
         return (
             <li
-                key={name}
+                key={id}
                 className={`dropdown__item ${isDark ? ' dropdown__item--dark' : ''}`}
-                onClick={() => handleSortClick(name, label)}>
+                onClick={() => handleSortClick(id, label)}>
                 {label}
             </li>
         );
@@ -63,15 +60,22 @@ const SortMenu = ({ classNames, onClicked }) => {
             </button>
 
             <ul className={`dropdown__content ${isOpen ? ' dropdown__content--active' : ''}`}>
-                {options}
+                {items}
             </ul>
         </div>
     );
 };
 
-SortMenu.propTypes = {
-    classNames: PropTypes.string.isRequired,
-    onClicked: PropTypes.func.isRequired
+Dropdown.propTypes = {
+    classNames: PropTypes.string,
+    onOptionSelected: PropTypes.func.isRequired,
+    selectedOption: PropTypes.string,
+    options: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+            label: PropTypes.string.isRequired
+        })
+    ).isRequired
 };
 
-export default SortMenu;
+export default Dropdown;

@@ -3,10 +3,10 @@ import { useState, useEffect, useContext, useMemo } from 'react';
 import { ThemeContext } from '../../ThemeContext';
 import { useAppContext } from '../../AppContext';
 
-import { allStatuses } from '../../consts';
+import { allStatuses, allSortOptions } from '../../consts';
 import { todoUtil } from '../../utils';
 
-import { SortMenu } from '../../components';
+import { Dropdown } from '../../components';
 
 import './SortTasks.scss';
 
@@ -31,15 +31,25 @@ const SortTasks = () => {
         setSortBy(selectedSortOption);
     };
 
+    const transformSortOptions = (options) => {
+        return options.map((option) => {
+            return {
+                id: option.name,
+                label: option.label
+            };
+        });
+    };
+
     return (
         <div className="sort-tasks">
             <h1 className="sort-tasks__title" style={{ color: theme.primaryColor }}>
                 {title} ({todos.length} {todos.length === 1 ? 'task' : 'tasks'})
             </h1>
 
-            <SortMenu
+            <Dropdown
                 classNames="sort-tasks__options"
-                onClicked={(selectedSortOption) => handleSortClick(selectedSortOption)}
+                onOptionSelected={(selectedSortOption) => handleSortClick(selectedSortOption)}
+                options={transformSortOptions(allSortOptions)}
             />
         </div>
     );

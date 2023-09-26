@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import DatePicker from 'react-datepicker';
+import ReactDatePicker from 'react-datepicker';
 
 import { ThemeContext } from '../../ThemeContext';
 
-import './PickerDate.scss';
+import './DatePicker.scss';
 import 'react-datepicker/dist/react-datepicker.css';
 
-const PickerDate = ({ date, onChange, classNames }) => {
+const DatePicker = ({ date, onChange, classNames }) => {
     const { theme } = useContext(ThemeContext);
 
     return (
@@ -17,7 +17,7 @@ const PickerDate = ({ date, onChange, classNames }) => {
                 backgroundColor: theme.secondaryBackgroundColor,
                 color: theme.secondaryColor
             }}>
-            <DatePicker
+            <ReactDatePicker
                 shouldCloseOnSelect={true}
                 required
                 selected={date}
@@ -29,10 +29,10 @@ const PickerDate = ({ date, onChange, classNames }) => {
     );
 };
 
-PickerDate.propTypes = {
+DatePicker.propTypes = {
     date: PropTypes.instanceOf(Date).isRequired,
     onChange: PropTypes.func.isRequired,
-    classNames: PropTypes.string.isRequired
+    classNames: PropTypes.string
 };
 
-export default PickerDate;
+export default DatePicker;

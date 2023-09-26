@@ -6,7 +6,7 @@ import { useAppContext } from '../../AppContext';
 
 import { todoUtil, dateUtil } from '../../utils';
 
-import { Button, PickerDate, CheckMark } from '../../components';
+import { Button, DatePicker, CheckMark } from '../../components';
 
 import './TaskForm.scss';
 
@@ -67,7 +67,7 @@ const TaskForm = ({ task, onSave }) => {
             />
 
             <label className="task-form__label">Date</label>
-            <PickerDate
+            <DatePicker
                 date={date}
                 onChange={(date) => setDate(date)}
                 classNames={`task-form__data-picker ${
